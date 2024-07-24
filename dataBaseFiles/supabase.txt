@@ -1,0 +1,5 @@
+SUPABASE DATABASE:
+
+PROJECT NAME: MamakaTours
+
+PASSWORD: eterodoy461A@
