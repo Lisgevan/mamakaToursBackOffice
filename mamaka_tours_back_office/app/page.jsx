@@ -1,9 +1,7 @@
-import Image from "next/image";
-
-export default function Home() {
+export default function MainBoardPage() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<h1>MAIN BOARD</h1>
+		<main className="flex min-h-screen flex-col items-center justify-center ">
+			<h1 className="w-screen ">MAIN BOARD</h1>
 		</main>
 	);
 }
