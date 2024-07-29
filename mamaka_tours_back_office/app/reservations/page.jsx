@@ -1,5 +1,7 @@
+import Button from "@/components/button";
 import CheckBox from "@/components/checkBox";
 import EditButton from "@/components/editButton";
+import Header from "@/components/header";
 import TableContainer from "@/components/tableContainer";
 import { getAllReservations } from "@/db_services/reservationsAPI";
 
@@ -8,10 +10,12 @@ async function ReservationsPage() {
 
 	return (
 		<>
-			<h1 className="bg-white z-10 sticky top-12 px-4 py-3 ">REASERVATIONS PAGE</h1>
+			<Header pageName="RESERVATION PAGE">
+				<Button colorClasses="text-green-500 border-green-500 hover:bg-green-500">Add reservation</Button>
+			</Header>
 
 			<TableContainer>
-				<thead className="z-10 sticky top-24">
+				<thead className="z-10 sticky top-32">
 					<tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
 						{/* <th className="py-3 px-6 text-center">ID</th> */}
 						<th className="py-3 px-6 text-center">Reference</th>

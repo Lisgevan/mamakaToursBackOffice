@@ -1,19 +1,21 @@
+import Button from "@/components/button";
 import CheckBox from "@/components/checkBox";
 import EditButton from "@/components/editButton";
+import Header from "@/components/header";
 import TableContainer from "@/components/tableContainer";
 import { getAllTransfers } from "@/db_services/transfersAPI";
 
 async function ReservationsPage() {
-	const { transfers, error } = await getAllTransfers();
-
-	// transfers.map(transfer => console.log(transfer.transferTo.regionName));
+	const { transfers, error, totalPrice } = await getAllTransfers();
 
 	return (
 		<>
-			<h1 className="bg-white z-10 sticky top-12 px-4 py-3 ">TRANSFERS PAGE</h1>
+			<Header pageName="TRANSFER PAGE">
+				<Button colorClasses="text-green-500 border-green-500 hover:bg-green-500">Add transfer order</Button>
+			</Header>
 
 			<TableContainer>
-				<thead className="z-10 sticky top-24">
+				<thead className="z-10 sticky top-32">
 					<tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
 						{/* <th className="py-3 px-6 text-center">ID</th> */}
 						<th className="py-3 px-6 text-center">Transfer Type</th>
@@ -54,6 +56,27 @@ async function ReservationsPage() {
 							</td>
 						</tr>
 					))}
+					<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
+						{/* <td className="py-3 px-6 text-center">-</td> */}
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center">-</td>
+						<td className="py-3 px-6 text-center font-semibold">{totalPrice}</td>
+						<td className="py-3 px-6 text-center">
+							<CheckBox check={false} />
+						</td>
+						<td className="py-3 px-6 text-center">{false}</td>
+						<td className="py-3 px-6 text-center">
+							<CheckBox check={false} />
+						</td>
+						<td className="py-3 px-6 text-center">
+							<EditButton />
+						</td>
+					</tr>
 				</tbody>
 			</TableContainer>
 		</>
