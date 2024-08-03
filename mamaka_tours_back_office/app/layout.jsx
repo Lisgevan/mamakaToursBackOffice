@@ -13,10 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={`${inter.className} flex flex-col`}>
+			<body className={`${inter.className} flex flex-col w-max`}>
 				<nav
 					id="mainHeader"
-					className="z-10 sticky top-0 flex items-center justify-evenly border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6"
+					className="z-10 sticky top-0 flex items-center justify-start gap-10 border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6 grow"
 				>
 					<Link
 						href={"./"}
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
 					</Link>
 				</nav>
 
-				<main className="flex flex-col mx-auto">{children}</main>
+				<main className="flex flex-col mx-auto h-max">{children}</main>
 			</body>
 		</html>
 	);

@@ -1,21 +1,34 @@
 import Button from "@/components/button";
 import CheckBox from "@/components/checkBox";
 import EditButton from "@/components/editButton";
+import FromToAgentPicker from "@/components/fromToAgentPicker";
 import Header from "@/components/header";
 import TableContainer from "@/components/tableContainer";
-import { getAllReservations } from "@/db_services/reservationsAPI";
+import { getAllAgents } from "@/db_services/agentsAPI";
+import { getAgentsReservations, getAllReservations } from "@/db_services/reservationsAPI";
 
-async function ReservationsPage() {
-	const { reservations, error } = await getAllReservations();
+async function ReservationsPage({ searchParams }) {
+	let { reservations, error: reservationsError } = await getAllReservations();
+	const { agents, error: agentsError } = await getAllAgents();
+
+	if (Object.keys(searchParams).length) {
+		const { agentId, startDate: arrivalDate } = searchParams;
+		// console.log("1a", agentId);
+		const { agentsReservations, error } = await getAgentsReservations({ agentId, arrivalDate });
+		console.log("2", searchParams);
+		// console.log("3", agentsReservations);
+		reservations = agentsReservations;
+	}
 
 	return (
 		<>
 			<Header pageName="RESERVATION PAGE">
 				<Button colorClasses="text-green-500 border-green-500 hover:bg-green-500">Add reservation</Button>
+				<FromToAgentPicker primaryColor="teal" agents={agents} />
 			</Header>
 
 			<TableContainer>
-				<thead className="z-10 sticky top-32">
+				<thead className="z-10 sticky top-36">
 					<tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
 						{/* <th className="py-3 px-6 text-center">ID</th> */}
 						<th className="py-3 px-6 text-center">Reference</th>
