@@ -3,10 +3,9 @@ import CheckBox from "@/components/checkBox";
 import EditButton from "@/components/editButton";
 import Header from "@/components/header";
 import TableContainer from "@/components/tableContainer";
-import { getAllTransfers } from "@/db_services/transfersAPI";
 
 async function ReservationsPage() {
-	const { transfers, error, totalPrice } = await getAllTransfers();
+	const transfers = [];
 
 	return (
 		<>
@@ -33,29 +32,30 @@ async function ReservationsPage() {
 					</tr>
 				</thead>
 				<tbody className="text-gray-600 text-sm font-light p-4">
-					{transfers.map(transfer => (
-						<tr key={transfer.transferId} className="border-b border-gray-200 hover:bg-gray-100">
-							{/* <td className="py-3 px-6 text-center">{transfer.transferId}</td> */}
-							<td className="py-3 px-6 text-center">{transfer.transferType}</td>
-							<td className="py-3 px-6 text-center">{transfer.agents.agentShortName}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferMeans.meansCompany}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferDate}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferTime}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferFrom.regionName}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferTo.regionName}</td>
-							<td className="py-3 px-6 text-center">{transfer.transferPrice}</td>
-							<td className="py-3 px-6 text-center">
-								<CheckBox check={transfer.transferPaid} />
-							</td>
-							<td className="py-3 px-6 text-center">{transfer.transferDetails}</td>
-							<td className="py-3 px-6 text-center">
-								<CheckBox check={transfer.transferNoShow} />
-							</td>
-							<td className="py-3 px-6 text-center">
-								<EditButton />
-							</td>
-						</tr>
-					))}
+					{transfers.length !== 0 &&
+						transfers.map(transfer => (
+							<tr key={transfer.transferId} className="border-b border-gray-200 hover:bg-gray-100">
+								{/* <td className="py-3 px-6 text-center">{transfer.transferId}</td> */}
+								<td className="py-3 px-6 text-center">{transfer.transferType}</td>
+								<td className="py-3 px-6 text-center">{transfer.agents.agentShortName}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferMeans.meansCompany}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferDate}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferTime}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferFrom.regionName}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferTo.regionName}</td>
+								<td className="py-3 px-6 text-center">{transfer.transferPrice}</td>
+								<td className="py-3 px-6 text-center">
+									<CheckBox check={transfer.transferPaid} />
+								</td>
+								<td className="py-3 px-6 text-center">{transfer.transferDetails}</td>
+								<td className="py-3 px-6 text-center">
+									<CheckBox check={transfer.transferNoShow} />
+								</td>
+								<td className="py-3 px-6 text-center">
+									<EditButton />
+								</td>
+							</tr>
+						))}
 					<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
 						{/* <td className="py-3 px-6 text-center">-</td> */}
 						<td className="py-3 px-6 text-center">-</td>
@@ -65,7 +65,7 @@ async function ReservationsPage() {
 						<td className="py-3 px-6 text-center">-</td>
 						<td className="py-3 px-6 text-center">-</td>
 						<td className="py-3 px-6 text-center">-</td>
-						<td className="py-3 px-6 text-center font-semibold">{totalPrice}</td>
+						<td className="py-3 px-6 text-center font-semibold">{"totalPrice"}</td>
 						<td className="py-3 px-6 text-center">
 							<CheckBox check={false} />
 						</td>
