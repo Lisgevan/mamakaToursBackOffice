@@ -61,7 +61,7 @@ function FromToAgentPicker({ primaryColor, agents }) {
 						<option value="0">Select Agent</option>
 						{agents.map(agent => (
 							<option key={agent.agentId} value={agent.agentId}>
-								{agent.agentShortName}
+								{agent.agentName}
 							</option>
 						))}
 					</select>

@@ -1,3 +1,5 @@
+import { unstable_noStore as noStore } from "next/cache";
+
 import Button from "@/components/button";
 import CheckBox from "@/components/checkBox";
 import EditButton from "@/components/editButton";
@@ -8,15 +10,16 @@ import { getAllAgents } from "@/db_services/agentsAPI";
 import { getAgentsReservations, getAllReservations } from "@/db_services/reservationsAPI";
 
 async function ReservationsPage({ searchParams }) {
+	noStore();
 	let { reservations, error: reservationsError } = await getAllReservations();
 	const { agents, error: agentsError } = await getAllAgents();
 
 	if (Object.keys(searchParams).length) {
-		const { agentId, startDate: arrivalDate } = searchParams;
+		const { agentId, startDate } = searchParams;
 		// console.log("1a", agentId);
-		const { agentsReservations, error } = await getAgentsReservations({ agentId, arrivalDate });
+		const { agentsReservations, error } = await getAgentsReservations({ agentId, startDate });
 		console.log("2", searchParams);
-		// console.log("3", agentsReservations);
+		console.log("3", agentsReservations);
 		reservations = agentsReservations;
 	}
 
@@ -37,11 +40,12 @@ async function ReservationsPage({ searchParams }) {
 						<th className="py-3 px-6 text-center">Pax</th>
 						<th className="py-3 px-6 text-center">Total Charge</th>
 						<th className="py-3 px-6 text-center">Client's Name</th>
-						<th className="py-3 px-6 text-center">Arrival</th>
-						<th className="py-3 px-6 text-center">Departure</th>
+						<th className="py-3 px-6 text-center">Reservation Type</th>
+						<th className="py-3 px-6 text-center">Date</th>
+						<th className="py-3 px-6 text-center">Time</th>
 						<th className="py-3 px-6 text-center">Checked In</th>
 						<th className="py-3 px-6 text-center">Checked Out</th>
-						<th className="py-3 px-6 text-center">Arrival Invoice</th>
+						{/* <th className="py-3 px-6 text-center">Arrival Invoice</th> */}
 						<th className="py-3 px-6 text-center">EDIT</th>
 					</tr>
 				</thead>
@@ -50,22 +54,29 @@ async function ReservationsPage({ searchParams }) {
 						<tr key={reservation.reservationId} className="border-b border-gray-200 hover:bg-gray-100">
 							{/* <td className="py-3 px-6 text-center">{reservation.reservationId}</td> */}
 							<td className="py-3 px-6 text-center">{reservation.reservationReference}</td>
-							<td className="py-3 px-6 text-center">{reservation.agents.agentShortName}</td>
+							<td className="py-3 px-6 text-center">{reservation.agents.agentName}</td>
 							<td className="py-3 px-6 text-center">{reservation.accommodations.accommodationName}</td>
 							<td className="py-3 px-6 text-center">{reservation.reservationTotalPax}</td>
 							<td className="py-3 px-6 text-center">{reservation.totalCharge}</td>
 							<td className="py-3 px-6 text-center">{reservation.clientName}</td>
-							<td className="py-3 px-6 text-center">{reservation.arrivalDate}</td>
-							<td className="py-3 px-6 text-center">{reservation.departureDate}</td>
+							<td className="py-3 px-6 text-center">{reservation.reservationType}</td>
+							<td
+								className="py-3 px-6 text-center text-nowrap
+							
+							"
+							>
+								{reservation.reservationDate.split("-").reverse().join("-")}
+							</td>
+							<td className="py-3 px-6 text-center">{reservation.reservationTime}</td>
 							<td className="py-3 px-6 text-center">
 								<CheckBox check={reservation.checkIn} />
 							</td>
 							<td className="py-3 px-6 text-center">
 								<CheckBox check={reservation.checkOut} />
 							</td>
-							<td className="py-3 px-6 text-center">
+							{/* <td className="py-3 px-6 text-center">
 								<CheckBox check={reservation.arrivalInvoice} />
-							</td>
+							</td> */}
 							<td className="py-3 px-6 text-center">
 								<EditButton />
 							</td>
