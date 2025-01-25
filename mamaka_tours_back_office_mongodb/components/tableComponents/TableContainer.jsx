@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import TableHead from "./TableHead";
+import ReservationsTableBody from "./ReservationsTableBody";
+import TransfersTableBody from "./TransfersTableBody";
 
-function TableContainer({ children }) {
+function TableContainer({ tableType, reservations, transfers }) {
 	// const totalHeight = window.innerHeight;
 	// const calculatedContentHeight = totalHeight - 165;
 
@@ -19,7 +22,14 @@ function TableContainer({ children }) {
 			<div className="min-w-screen min-h-max flex justify-center bg-gray-100 font-sans">
 				<div className="min-w-max lg:w-5/6">
 					<div className="bg-white shadow-md rounded">
-						<table className="w-screen table-auto">{children}</table>
+						<table className="w-screen table-auto">
+							<TableHead tableType={tableType} />
+							{tableType === "reservations" ? (
+								<ReservationsTableBody reservations={reservations} />
+							) : (
+								<TransfersTableBody transfers={transfers} />
+							)}
+						</table>
 					</div>
 				</div>
 			</div>

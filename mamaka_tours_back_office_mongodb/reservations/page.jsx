@@ -5,7 +5,7 @@ import CheckBox from "@/components/Checkbox";
 import EditButton from "@/components/EditButton";
 import FromToAgentPicker from "@/components/FromToAgentPicker";
 import Header from "@/components/Header";
-import TableContainer from "@/components/TableContainer";
+import TableContainer from "@/components/tableComponents/TableContainer";
 import { getAllAgents } from "@/db_services/agentsAPI";
 import { getAgentsReservations, getAllReservations } from "@/db_services/reservationsAPI";
 

@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import CheckBox from "@/components/Checkbox";
 import EditButton from "@/components/EditButton";
 import Header from "@/components/Header";
-import TableContainer from "@/components/TableContainer";
+import TableContainer from "@/components/tableComponents/TableContainer";
 import { getAllTransfers } from "@/db_services/transfersAPI";
 
 async function ReservationsPage() {
