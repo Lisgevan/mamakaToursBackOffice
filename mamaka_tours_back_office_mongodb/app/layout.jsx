@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
 			<body className={`${inter.className} flex flex-col w-max`}>
 				<nav
 					id="mainHeader"
-					className="z-10 sticky top-0 flex items-center justify-start gap-10 border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6 grow"
+					className="z-10 sticky top-0 left-0 flex items-center justify-start gap-10 border-b border-stone-200 bg-yellow-400 px-4 py-3 uppercase sm:px-6 grow"
 				>
 					<Link
 						href={"./"}

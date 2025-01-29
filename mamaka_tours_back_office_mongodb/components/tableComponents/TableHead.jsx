@@ -11,9 +11,7 @@ export default function TableHead({ tableType }) {
 		"Reservation Type",
 		"Date",
 		"Time",
-		"Checked In",
-		"Checked Out",
-		"Arrival Invoice",
+		"Checked In/Out",
 		"EDIT",
 	];
 	const transfersHeadList = [

@@ -1,14 +1,11 @@
 import { unstable_noStore as noStore } from "next/cache";
-
 import Button from "@/components/Button";
 import FromToAgentPicker from "@/components/FromToAgentPicker";
 import Header from "@/components/Header";
 import TableContainer from "@/components/tableComponents/TableContainer";
 
-async function ReservationsPage({ searchParams }) {
+async function ReservationsPage() {
 	noStore();
-
-	const reservations = [{}];
 
 	return (
 		<>
@@ -17,7 +14,7 @@ async function ReservationsPage({ searchParams }) {
 				<FromToAgentPicker primaryColor="teal" />
 			</Header>
 
-			<TableContainer tableType="reservations" reservations={reservations} />
+			<TableContainer tableType="reservations" />
 		</>
 	);
 }
