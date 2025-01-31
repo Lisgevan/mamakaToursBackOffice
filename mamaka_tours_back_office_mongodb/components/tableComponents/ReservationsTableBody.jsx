@@ -27,6 +27,7 @@ export default async function ReservationsTableBody() {
 					<td className="py-3 px-6 text-center">
 						<CheckBox check={reservation.checkInOut} />
 					</td>
+					<td className="py-3 px-6 text-center">{reservation.details}</td>
 					<td className="py-3 px-6 text-center">
 						<EditButton />
 					</td>
@@ -46,6 +47,7 @@ export default async function ReservationsTableBody() {
 				<td className="py-3 px-6 text-center">
 					<CheckBox check={false} />
 				</td>
+				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">
 					<EditButton />
 				</td>

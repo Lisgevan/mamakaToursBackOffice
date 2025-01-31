@@ -1,15 +1,15 @@
 "use client";
 function Button({ colorClasses, type = "button", onClick = () => {}, children }) {
-	const handleClick = () => {
-		console.log("clicked");
-	};
+	// const handleClick = () => {
+	// 	console.log("clicked");
+	// };
 
 	return (
 		<>
 			<button
 				type={type}
 				className={`hover:text-white border font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ${colorClasses}`}
-				onClick={handleClick}
+				onClick={onClick}
 			>
 				{children}
 			</button>

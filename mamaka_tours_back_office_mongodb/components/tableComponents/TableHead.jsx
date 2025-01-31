@@ -12,6 +12,7 @@ export default function TableHead({ tableType }) {
 		"Date",
 		"Time",
 		"Checked In/Out",
+		"Details",
 		"EDIT",
 	];
 	const transfersHeadList = [
