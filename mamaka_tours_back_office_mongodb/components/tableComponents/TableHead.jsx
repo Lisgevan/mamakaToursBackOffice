@@ -31,12 +31,29 @@ export default function TableHead({ tableType }) {
 		"EDIT",
 	];
 
+	const accommodationsHeadList = ["ID", "NAME"];
+	const agentsHeadList = ["ID", "NAME"];
+	const locationsHeadList = ["ID", "NAME"];
+	const transferMeanHeadList = ["ID", "NAME", "FULLNAME"];
+
 	switch (tableType) {
 		case "reservations":
 			tableHeadList = reservationsHeadList;
 			break;
 		case "transfers":
 			tableHeadList = transfersHeadList;
+			break;
+		case "accommodations":
+			tableHeadList = accommodationsHeadList;
+			break;
+		case "agents":
+			tableHeadList = agentsHeadList;
+			break;
+		case "locations":
+			tableHeadList = locationsHeadList;
+			break;
+		case "transfermean":
+			tableHeadList = transferMeanHeadList;
 			break;
 		default:
 			break;

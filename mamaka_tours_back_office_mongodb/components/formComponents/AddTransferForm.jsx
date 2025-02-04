@@ -10,26 +10,21 @@ import Select from "./Select";
 export default function AddTransfernForm() {
 	const [formState, formAction] = useActionState(addReservations, null);
 	const [formData, setFormData] = useState({
-		reference: "",
+		transferType: "",
+		transferMean: "",
+		transferDate: "",
+		transferTime: "",
+		locationFrom: "",
+		locationTo: "",
+		price: 18,
+		paid: false,
+		noShow: false,
 		agent: "",
-		clientName: "",
-		accommodation: "",
-		adults: 0,
-		kids: 0,
-		infants: 0,
-		totalPax: 0,
-		taxiCost: 0,
-		agentFee: 0,
-		totalCost: 0,
-		arrivalDetails: "arrival",
-		arrivalDate: "",
-		arrivalTime: "",
-		departureDetails: "departure",
-		departureDate: "",
-		departureTime: "",
-		details: "",
-		arrivalOnly: false,
-		departureOnly: false,
+		transferDetails: {
+			reference: "",
+			accommodation: "",
+			clientName: "",
+		},
 	});
 
 	const router = useRouter();
