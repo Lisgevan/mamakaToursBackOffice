@@ -1,88 +1,47 @@
 "use server";
 
+import { dataToObject } from "@/lib/dataToObject";
 import connectToDatabase from "@/lib/mongodb";
-// import Transfers from "@/models/Transfers";
+import Transfers from "@/models/Transfers";
 import { revalidatePath } from "next/cache";
 
 export async function addTransfers(prevState, formData) {
 	try {
 		await connectToDatabase();
-		console.log(formData);
 
-		// // Extract form data
-		// const {
-		// 	reference,
-		// 	agent,
-		// 	accommodation,
-		// 	clientName,
-		// 	adults,
-		// 	kids,
-		// 	infants,
-		// 	totalPax,
-		// 	taxiCost,
-		// 	agentFee,
-		// 	totalCost,
-		// 	arrivalDate,
-		// 	arrivalTime,
-		// 	departureDate,
-		// 	departureTime,
-		// 	details,
-		// 	arrivalOnly,
-		// 	departureOnly,
-		// } = Object.fromEntries(formData.entries()); // Convert FormData to an object
+		const formDataObj = dataToObject(formData);
 
-		// // Convert values
-		// // const totalPax = (s) || 0) + ( || 0) + (ts) || 0);
-		// // const taxiCostNum = ost) || 0;
-		// // const agentFeeNum = Fee) || 0;
-		// // const totalCostNum = Cost) || 0;
+		// Now we can process the transferDetails properly
+		const transferDetails = [];
+		let i = 0;
 
-		// const transfers = [];
+		// While the transferDetails entry exists, push the objects to the array
+		while (formDataObj[`transferDetails[${i}].reference`]) {
+			transferDetails.push({
+				reference: formDataObj[`transferDetails[${i}].reference`],
+				accommodation: formDataObj[`transferDetails[${i}].accommodation`],
+				clientName: formDataObj[`transferDetails[${i}].clientName`],
+			});
+			i++;
+		}
 
-		// if (!departureOnly) {
-		// 	transfers.push({
-		// 		reference,
-		// 		agent,
-		// 		accommodation,
-		// 		clientName,
-		// 		totalPax,
-		// 		adults,
-		// 		kids,
-		// 		infants,
-		// 		reservationType: "Arrival",
-		// 		reservationDate: new Date(arrivalDate),
-		// 		reservationTime: arrivalTime,
-		// 		taxiCost,
-		// 		agentFee,
-		// 		totalCost: totalCost / 2,
-		// 		checkInOut: false,
-		// 		details,
-		// 	});
-		// }
+		const finalFormData = {};
+		formData.forEach((value, key) => {
+			if (!key.includes("transferDetails") && !key.includes("$ACTION")) {
+				finalFormData[key] = value;
+			}
+		});
+		finalFormData.transferDetails = transferDetails;
+		finalFormData.paid = finalFormData.paid === "on" ? true : false;
+		finalFormData.noShow = finalFormData.noShow === "on" ? true : false;
 
-		// if (!arrivalOnly) {
-		// 	transfers.push({
-		// 		reference: reference,
-		// 		agent,
-		// 		accommodation,
-		// 		clientName,
-		// 		totalPax,
-		// 		adults,
-		// 		kids,
-		// 		infants,
-		// 		reservationType: "Departure",
-		// 		reservationDate: new Date(departureDate),
-		// 		reservationTime: departureTime,
-		// 		taxiCost,
-		// 		agentFee,
-		// 		totalCost: totalCost / 2,
-		// 		checkInOut: false,
-		// 		details,
-		// 	});
-		// }
+		console.log(finalFormData);
 
-		// // Save both transfers to the database
-		// await Transfers.insertMany(transfers);
+		// Proceed with form submission or saving the data
+		// console.log("final: ", finalFormData); // or save to DB, etc.
+
+		const newTransfer = new Transfers(finalFormData);
+		await newTransfer.save();
 
 		revalidatePath("/");
 

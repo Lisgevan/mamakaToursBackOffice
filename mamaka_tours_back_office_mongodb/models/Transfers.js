@@ -16,13 +16,13 @@ const TransfersSchema = new Schema(
 		transferDate: { type: Date, required: true },
 		transferTime: { type: String, required: true },
 		locationFrom: { type: String, required: true },
-		lactionTo: { type: String, required: true },
+		locationTo: { type: String, required: true },
 		price: { type: Number, required: true },
 		paid: { type: Boolean, required: false },
 		noShow: { type: Boolean, required: false },
 		details: { type: String, required: false },
 		transferDetails: {
-			type: TransferDetailsSchema,
+			type: [TransferDetailsSchema],
 			required: true, // Optional field
 		},
 	},

@@ -1,14 +1,10 @@
-import connectToDatabase from "@/lib/mongodb";
 import CheckBox from "../Checkbox";
 import EditButton from "../EditButton";
-import Reservations from "@/models/Reservations";
 import formatDate from "@/lib/formatDate";
+import { getReservations } from "@/app/actions/getReservations";
 
 export default async function ReservationsTableBody() {
-	await connectToDatabase();
-
-	const reservationsData = await Reservations.find().lean();
-	const reservations = JSON.parse(JSON.stringify(reservationsData));
+	const reservations = await getReservations();
 
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">

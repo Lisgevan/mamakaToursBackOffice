@@ -54,12 +54,6 @@ export default function AddReservationForm() {
 				updatedForm.totalPax =
 					parseInt(updatedForm.adults || 0) + parseInt(updatedForm.kids || 0) + parseInt(updatedForm.infants || 0);
 
-				// Ensure decimal precision for costs
-				// const formatToTwoDecimals = num => (isNaN(num) ? 0 : parseFloat(num).toFixed(2));
-
-				// updatedForm.taxiCost = formatToTwoDecimals(updatedForm.taxiCost);
-				// updatedForm.agentFee = formatToTwoDecimals(updatedForm.agentFee);
-
 				// Auto-update totalCost
 				updatedForm.totalCost =
 					// formatToTwoDecimals(
@@ -84,10 +78,6 @@ export default function AddReservationForm() {
 				<Input type="text" name="reference" formData={formData} handleChange={handleChange}>
 					Reference
 				</Input>
-
-				{/* <Input type="text" name="agent" formData={formData} handleChange={handleChange}>
-					Agent:
-				</Input> */}
 
 				<Select name="agent">Agent: </Select>
 			</div>
