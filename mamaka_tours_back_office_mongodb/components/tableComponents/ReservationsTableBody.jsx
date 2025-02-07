@@ -2,6 +2,7 @@ import CheckBox from "../Checkbox";
 import EditButton from "../EditButton";
 import formatDate from "@/lib/formatDate";
 import { getReservations } from "@/app/actions/getReservations";
+import DeleteButton from "../DeleteButton";
 
 export default async function ReservationsTableBody() {
 	const reservations = await getReservations();
@@ -27,6 +28,9 @@ export default async function ReservationsTableBody() {
 					<td className="py-3 px-6 text-center">
 						<EditButton />
 					</td>
+					<td className="py-3 px-6 text-center">
+						<DeleteButton />
+					</td>
 				</tr>
 			))}
 			<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
@@ -46,6 +50,9 @@ export default async function ReservationsTableBody() {
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">
 					<EditButton />
+				</td>
+				<td className="py-3 px-6 text-center">
+					<DeleteButton />
 				</td>
 			</tr>
 		</tbody>

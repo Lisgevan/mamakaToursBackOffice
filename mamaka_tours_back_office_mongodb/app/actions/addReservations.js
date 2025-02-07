@@ -31,12 +31,6 @@ export async function addReservations(prevState, formData) {
 			departureOnly,
 		} = Object.fromEntries(formData.entries()); // Convert FormData to an object
 
-		// Convert values
-		// const totalPax = (s) || 0) + ( || 0) + (ts) || 0);
-		// const taxiCostNum = ost) || 0;
-		// const agentFeeNum = Fee) || 0;
-		// const totalCostNum = Cost) || 0;
-
 		const reservations = [];
 
 		if (!departureOnly) {

@@ -1,23 +1,12 @@
+import AddDataForm from "@/components/formComponents/AddDataForm";
 import Header from "@/components/Header";
-import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
 
 export default function AgentssPage() {
 	return (
 		<>
 			<Header pageName="AGENTS PAGE">
-				<LinkButton href="/maintenance/accommodations" cssClasses="text-green-500 border-green-500 hover:bg-green-500">
-					ACCOMMODATIONS
-				</LinkButton>
-				<LinkButton href="/maintenance/agents" cssClasses="text-green-500 border-green-500 hover:bg-green-500">
-					AGENTS
-				</LinkButton>
-				<LinkButton href="/maintenance/locations" cssClasses="text-green-500 border-green-500 hover:bg-green-500">
-					LOCATIONS
-				</LinkButton>
-				<LinkButton href="/maintenance/transfermean" cssClasses="text-green-500 border-green-500 hover:bg-green-500">
-					TRANSFER MEANS
-				</LinkButton>
+				<AddDataForm dataType={"agents"} />
 			</Header>
 			<TableContainer tableType={"agents"} />
 		</>

@@ -14,6 +14,7 @@ export default function TableHead({ tableType }) {
 		"Checked In/Out",
 		"Details",
 		"EDIT",
+		"DETELE",
 	];
 	const transfersHeadList = [
 		"ID",
@@ -29,12 +30,13 @@ export default function TableHead({ tableType }) {
 		"Details",
 		"No Show",
 		"EDIT",
+		"DETELE",
 	];
 
-	const accommodationsHeadList = ["ID", "NAME"];
-	const agentsHeadList = ["ID", "NAME"];
-	const locationsHeadList = ["ID", "NAME"];
-	const transferMeanHeadList = ["ID", "NAME", "FULLNAME"];
+	const accommodationsHeadList = ["ID", "NAME", "EDIT", "DELETE"];
+	const agentsHeadList = ["ID", "NAME", "EDIT", "DELETE"];
+	const locationsHeadList = ["ID", "NAME", "EDIT", "DELETE"];
+	const transferMeanHeadList = ["ID", "NAME", "FULLNAME", "EDIT", "DELETE"];
 
 	switch (tableType) {
 		case "reservations":

@@ -17,12 +17,14 @@ export default function MainBoardPage() {
 		<>
 			<Header pageName="Main Board"></Header>
 			<div id="content" className="w-screen bg-gray-400 flex justify-center" style={{ height: contentHeight }}>
-				<h1 className="text-3xl self-center">
-					SELECT "<span className="font-bold">RESERVATIONS</span>" OR "<span className="font-bold">TRANSFERS</span>"
-					FROM THE BUTTONS AT THE TOP
+				<h1 className="flex flex-col text-3xl self-center gap-10 p-4 text-center">
+					<span>SELECT ONE OF</span>
+					<span className="font-bold">"RESERVATIONS"</span>
+					<span className="font-bold">"TRANSFERS"</span>
+					<span className="font-bold">"MAINTENANCE"</span>
+					<span>FROM THE BUTTONS AT THE TOP</span>
 				</h1>
 			</div>
 		</>
 	);
 }
-

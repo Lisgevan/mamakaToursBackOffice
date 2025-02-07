@@ -35,11 +35,6 @@ export async function addTransfers(prevState, formData) {
 		finalFormData.paid = finalFormData.paid === "on" ? true : false;
 		finalFormData.noShow = finalFormData.noShow === "on" ? true : false;
 
-		console.log(finalFormData);
-
-		// Proceed with form submission or saving the data
-		// console.log("final: ", finalFormData); // or save to DB, etc.
-
 		const newTransfer = new Transfers(finalFormData);
 		await newTransfer.save();
 

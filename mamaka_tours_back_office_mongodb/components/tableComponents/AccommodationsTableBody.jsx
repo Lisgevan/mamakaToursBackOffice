@@ -1,6 +1,7 @@
 import connectToDatabase from "@/lib/mongodb";
 import EditButton from "../EditButton";
 import Accommodations from "@/models/Accommodations";
+import DeleteButton from "../DeleteButton";
 
 export default async function AccommodationsTableBody() {
 	await connectToDatabase();
@@ -17,6 +18,9 @@ export default async function AccommodationsTableBody() {
 					<td className="py-3 px-6 text-center">
 						<EditButton />
 					</td>
+					<td className="py-3 px-6 text-center">
+						<DeleteButton />
+					</td>
 				</tr>
 			))}
 			<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
@@ -24,6 +28,9 @@ export default async function AccommodationsTableBody() {
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">
 					<EditButton />
+				</td>
+				<td className="py-3 px-6 text-center">
+					<DeleteButton />
 				</td>
 			</tr>
 		</tbody>
