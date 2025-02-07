@@ -35,7 +35,7 @@ export default async function TransfersTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={transfer} dataType="transfers" />
 					</td>
 				</tr>
 			))}

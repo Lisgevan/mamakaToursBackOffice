@@ -1,7 +1,7 @@
 import CheckBox from "../Checkbox";
 import EditButton from "../EditButton";
 import formatDate from "@/lib/formatDate";
-import { getReservations } from "@/app/actions/getReservations";
+import { getReservations } from "@/app/actions/getActions/getReservations";
 import DeleteButton from "../DeleteButton";
 
 export default async function ReservationsTableBody() {
@@ -29,7 +29,7 @@ export default async function ReservationsTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={reservation} dataType="reservations" />
 					</td>
 				</tr>
 			))}

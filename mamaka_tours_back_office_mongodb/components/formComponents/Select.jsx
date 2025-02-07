@@ -1,10 +1,10 @@
 "use client";
 
-import { getAccommodations } from "@/app/actions/getAccommodations";
-import { getAgents } from "@/app/actions/getAgents";
-import { getLocations } from "@/app/actions/getLocations";
-import { getReservations } from "@/app/actions/getReservations";
-import { getTransferMean } from "@/app/actions/getTransfermean";
+import { getAccommodations } from "@/app/actions/getActions/getAccommodations";
+import { getAgents } from "@/app/actions/getActions/getAgents";
+import { getLocations } from "@/app/actions/getActions/getLocations";
+import { getReservations } from "@/app/actions/getActions/getReservations";
+import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import { useEffect, useState } from "react";
 
 export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {} }) {

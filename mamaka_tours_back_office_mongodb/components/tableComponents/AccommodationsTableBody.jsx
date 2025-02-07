@@ -19,7 +19,7 @@ export default async function AccommodationsTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={accommodation} dataType="accommodations" />
 					</td>
 				</tr>
 			))}

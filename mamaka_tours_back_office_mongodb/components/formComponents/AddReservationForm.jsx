@@ -3,7 +3,7 @@
 import { useActionState, useState, useEffect } from "react";
 import Button from "../Button";
 import Input from "./Input";
-import { addReservations } from "@/app/actions/addReservations";
+import { addReservations } from "@/app/actions/addActions/addReservations";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
 
@@ -56,11 +56,9 @@ export default function AddReservationForm() {
 
 				// Auto-update totalCost
 				updatedForm.totalCost =
-					// formatToTwoDecimals(
 					parseInt(updatedForm.taxiCost || 0) * 2 +
 					parseInt(updatedForm.agentFee || 0) * parseInt(updatedForm.adults || 0) +
 					(parseInt(updatedForm.agentFee || 0) / 2) * parseInt(updatedForm.kids || 0);
-				// );
 
 				return updatedForm;
 			});

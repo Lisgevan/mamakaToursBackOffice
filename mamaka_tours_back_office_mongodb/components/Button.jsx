@@ -1,9 +1,5 @@
 "use client";
 function Button({ colorClasses, type = "button", onClick = () => {}, children }) {
-	// const handleClick = () => {
-	// 	console.log("clicked");
-	// };
-
 	return (
 		<>
 			<button

@@ -3,10 +3,10 @@
 import { useActionState, useState, useEffect } from "react";
 import Button from "../Button";
 import Input from "./Input";
-import { addTransfers } from "@/app/actions/addTransfers";
+import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
-import { getTransferMean } from "@/app/actions/getTransfermean";
+import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import TransferDetails from "../TransferDetails";
 
 export default function AddTransfernForm() {
@@ -44,7 +44,6 @@ export default function AddTransfernForm() {
 	// Handle selection change
 	const handleSelectChange = async e => {
 		const selectedId = e.target.value;
-		// console.log(<selectedI></selectedI>d);
 		setSelectedTransferId(selectedId);
 		const transferMeans = await getTransferMean();
 
@@ -67,10 +66,6 @@ export default function AddTransfernForm() {
 			});
 		}
 	};
-
-	// useEffect(() => {
-	// 	console.log(transferDetails);
-	// }, [transferDetails]);
 
 	return (
 		<form action={formAction} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-2 w-3/5 m-auto text-gray-900">

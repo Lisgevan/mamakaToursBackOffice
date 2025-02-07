@@ -19,7 +19,7 @@ export default async function LocationsTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={location} dataType="locations" />
 					</td>
 				</tr>
 			))}

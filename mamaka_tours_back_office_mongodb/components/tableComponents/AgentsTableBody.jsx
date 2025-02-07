@@ -19,7 +19,7 @@ export default async function AgentsTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={agent} dataType="agents" />
 					</td>
 				</tr>
 			))}

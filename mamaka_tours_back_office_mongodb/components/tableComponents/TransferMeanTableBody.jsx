@@ -20,7 +20,7 @@ export default async function TransfermeanTableBody() {
 						<EditButton />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<DeleteButton />
+						<DeleteButton data={transferMean} dataType="transferMean" />
 					</td>
 				</tr>
 			))}

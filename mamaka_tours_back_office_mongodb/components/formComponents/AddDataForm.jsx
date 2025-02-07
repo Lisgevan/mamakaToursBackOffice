@@ -2,7 +2,7 @@
 import { useState, useActionState, startTransition } from "react";
 import Input from "./Input";
 import Button from "../Button";
-import { addData } from "@/app/actions/addData";
+import { addData } from "@/app/actions/addActions/addData";
 
 export default function AddDataForm({ dataType }) {
 	const [formState, formAction] = useActionState(addData, null);
