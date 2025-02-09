@@ -149,7 +149,7 @@ export default function EditReservationForm({ reservation }) {
 			</div>
 
 			{/* arrival inputs */}
-			{reservation.reservationType === "arrival" && (
+			{reservation.reservationType === "Arrival" && (
 				<div className="flex justify-around">
 					<Input
 						type="text"

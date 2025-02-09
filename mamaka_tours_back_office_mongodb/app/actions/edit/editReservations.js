@@ -7,9 +7,9 @@ import { revalidatePath } from "next/cache";
 export async function editReservations(reservationId, formData) {
 	try {
 		await connectToDatabase();
-		console.log(formData);
+		// console.log(formData);
 
-		console.log("ID 2", reservationId);
+		// console.log("ID 2", reservationId);
 
 		// Extract form data
 		const {
@@ -49,7 +49,7 @@ export async function editReservations(reservationId, formData) {
 			checkInOut: checkInOut === "on",
 			details,
 		};
-		console.log("reservation", reservation);
+		// console.log("reservation", reservation);
 
 		const updatedReservation = await Reservations.findByIdAndUpdate(reservationId, reservation, { new: true });
 		console.log("Updated reservation:", updatedReservation);
