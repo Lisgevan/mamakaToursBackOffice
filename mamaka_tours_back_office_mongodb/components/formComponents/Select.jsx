@@ -22,6 +22,8 @@ export default function Select({ name, children, extraClasses = "", required = t
 		selectValue = dataItem?.accommodation || name;
 	} else if (name === "transferMean") {
 		selectValue = dataItem?.transferMean || name;
+	} else if (name === "transferType") {
+		selectValue = dataItem?.transferType || name;
 	} else if (name === "locationFrom") {
 		selectValue = dataItem?.locationFrom || name;
 	} else if (name === "locationTo") {

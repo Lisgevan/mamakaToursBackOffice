@@ -4,9 +4,15 @@ import { useState, useEffect } from "react";
 import Button from "./Button";
 import { getReservations } from "@/app/actions/getActions/getReservations";
 
-export default function TransferDetails({ onChange }) {
+export default function TransferDetails({ onChange, transferDetailsData = null }) {
 	const [reservations, setReservations] = useState([]);
 	const [transferDetails, setTransferDetails] = useState([{ reference: "", accommodation: "", clientName: "" }]);
+
+	useEffect(() => {
+		if (transferDetailsData) {
+			setTransferDetails(transferDetailsData);
+		}
+	}, []);
 
 	useEffect(() => {
 		async function fetchReservations() {

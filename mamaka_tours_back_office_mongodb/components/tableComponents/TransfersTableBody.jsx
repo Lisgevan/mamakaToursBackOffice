@@ -25,14 +25,14 @@ export default async function TransfersTableBody() {
 					<td className="py-3 px-6 text-center">{transfer.locationTo}</td>
 					<td className="py-3 px-6 text-center">{transfer.price}</td>
 					<td className="py-3 px-6 text-center">
-						<CheckBox check={true} />
+						<CheckBox check={transfer.paid} />
 					</td>
 					<td className="py-3 px-6 text-center">{transfer.details}</td>
 					<td className="py-3 px-6 text-center">
-						<CheckBox check={false} />
+						<CheckBox check={transfer.noShow} />
 					</td>
 					<td className="py-3 px-6 text-center">
-						<EditButton />
+						<EditButton dataItemId={transfer._id} dataItemType="transfers" />
 					</td>
 					<td className="py-3 px-6 text-center">
 						<DeleteButton data={transfer} dataType="transfers" />

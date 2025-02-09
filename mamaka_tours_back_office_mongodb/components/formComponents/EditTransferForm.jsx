@@ -9,28 +9,15 @@ import Select from "./Select";
 import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import TransferDetails from "../TransferDetails";
 
-export default function AddTransfernForm() {
+export default function EditTransfernForm({ transfer }) {
 	const [formState, formAction] = useActionState(addTransfers, null);
 	const [selectedTransferId, setSelectedTransferId] = useState(""); // ID of the selected transfer
 	const [fullName, setFullName] = useState(""); // Auto-filled value
 	const [transferDetails, setTransferDetails] = useState([]);
 	const [formData, setFormData] = useState({
-		transferType: "",
-		transferMean: "",
-		fullName: "",
-		transferDate: "",
-		transferTime: "",
-		locationFrom: "",
-		locationTo: "",
-		price: 0,
-		paid: false,
-		noShow: false,
-		agent: "",
-		transferDetails: {
-			reference: "",
-			accommodation: "",
-			clientName: "",
-		},
+		...transfer,
+		transferDate: transfer.transferDate ? transfer.transferDate.split("T")[0] : "",
+		transferTime: transfer.transferTime || "00:00",
 	});
 
 	const router = useRouter();
@@ -68,6 +55,7 @@ export default function AddTransfernForm() {
 		} else {
 			setFormData(prev => {
 				const updatedForm = { ...prev, [name]: value };
+
 				return updatedForm;
 			});
 		}
@@ -81,17 +69,17 @@ export default function AddTransfernForm() {
 			)}
 			{/* transfer type / agent */}
 			<div className="flex justify-around ">
-				<Select name="transferType" onChange={handleChange} dataItem={formData}>
+				<Select dataItem={formData} name="transferType" onChange={handleChange}>
 					Transfer Type:{" "}
 				</Select>
-				<Select name="agent" onChange={handleChange} dataItem={formData}>
+				<Select dataItem={formData} name="agent" onChange={handleChange}>
 					Transfer Agent:{" "}
 				</Select>
 			</div>
 
 			{/* Transfer Mean and name */}
 			<div className="flex justify-around">
-				<Select name="transferMean" onChange={handleSelectChange} dataItem={formData}>
+				<Select dataItem={formData} name="transferMean" onChange={handleSelectChange}>
 					Transfer Mean:{" "}
 				</Select>
 				<div>
@@ -138,10 +126,10 @@ export default function AddTransfernForm() {
 
 			{/* location from / to */}
 			<div className="flex justify-around ">
-				<Select name="locationFrom" onChange={handleChange} dataItem={formData}>
+				<Select dataItem={formData} name="locationFrom" onChange={handleChange}>
 					Location From:{" "}
 				</Select>
-				<Select name="locationTo" onChange={handleChange} dataItem={formData}>
+				<Select dataItem={formData} name="locationTo" onChange={handleChange}>
 					Location To:{" "}
 				</Select>
 			</div>
@@ -162,7 +150,7 @@ export default function AddTransfernForm() {
 			</div>
 
 			{/* Transfer Details Inputs */}
-			<TransferDetails onChange={setTransferDetails} />
+			<TransferDetails onChange={setTransferDetails} transferDetailsData={formData.transferDetails} />
 
 			{/* Submit button */}
 			<Button type="submit" colorClasses="text-gray-700 border-gray-700 hover:bg-green-500 w-full text-2xl">

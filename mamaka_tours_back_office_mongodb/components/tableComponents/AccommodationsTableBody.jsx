@@ -16,7 +16,7 @@ export default async function AccommodationsTableBody() {
 					<td className="py-3 px-6 text-center">{accommodation._id}</td>
 					<td className="py-3 px-6 text-center">{accommodation.name}</td>
 					<td className="py-3 px-6 text-center">
-						<EditButton />
+						<EditButton dataItemId={accommodation._id} dataItemType="accommodations" />
 					</td>
 					<td className="py-3 px-6 text-center">
 						<DeleteButton data={accommodation} dataType="accommodations" />

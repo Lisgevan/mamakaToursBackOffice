@@ -27,7 +27,7 @@ export default function Input({
 				type={type}
 				id={name}
 				name={name}
-				value={formData[name]}
+				value={formData[name] || ""}
 				onChange={handleChange}
 				className={`text-gray-900 ps-2 ${extraClasses}`}
 				placeholder={placeholder}

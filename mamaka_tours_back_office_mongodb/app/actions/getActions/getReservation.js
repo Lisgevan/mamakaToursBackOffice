@@ -6,8 +6,8 @@ import Reservations from "@/models/Reservations";
 export async function getReservation(reservationId) {
 	await connectToDatabase();
 
-	const reservationsData = await Reservations.findById(reservationId).lean();
-	const reservations = JSON.parse(JSON.stringify(reservationsData));
+	const reservationData = await Reservations.findById(reservationId).lean();
+	const reservation = JSON.parse(JSON.stringify(reservationData));
 
-	return reservations;
+	return reservation;
 }
