@@ -7,13 +7,26 @@ import { getReservations } from "@/app/actions/getActions/getReservations";
 import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import { useEffect, useState } from "react";
 
-export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {} }) {
+export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {}, dataItem }) {
 	const [selections, setSelections] = useState([]);
 
 	const transferType = [
 		{ _id: 1, name: "Land Transfer" },
 		{ _id: 2, name: "Sea Transfer" },
 	];
+
+	let selectValue;
+	if (name === "agent") {
+		selectValue = dataItem?.agent || name;
+	} else if (name === "accommodation") {
+		selectValue = dataItem?.accommodation || name;
+	} else if (name === "transferMean") {
+		selectValue = dataItem?.transferMean || name;
+	} else if (name === "locationFrom") {
+		selectValue = dataItem?.locationFrom || name;
+	} else if (name === "locationTo") {
+		selectValue = dataItem?.locationTo || name;
+	}
 
 	useEffect(() => {
 		async function fetchSelections() {
@@ -39,7 +52,14 @@ export default function Select({ name, children, extraClasses = "", required = t
 	return (
 		<div>
 			<label htmlFor={name}>{children}</label>
-			<select name={name} id={name} className={`text-gray-900 ps-2 ${extraClasses}`} onChange={onChange} required>
+			<select
+				name={name}
+				id={name}
+				value={selectValue}
+				className={`text-gray-900 ps-2 ${extraClasses}`}
+				onChange={onChange}
+				required
+			>
 				<option value="">Select...</option>
 				{selections.map(selection => (
 					<option key={selection._id} value={selection.name}>

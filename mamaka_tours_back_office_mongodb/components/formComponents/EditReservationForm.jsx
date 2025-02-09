@@ -3,42 +3,39 @@
 import { useActionState, useState, useEffect } from "react";
 import Button from "../Button";
 import Input from "./Input";
-import { addReservations } from "@/app/actions/addActions/addReservations";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
+import { editReservations } from "@/app/actions/edit/editReservations";
 
-export default function AddReservationForm() {
-	const [formState, formAction] = useActionState(addReservations, null);
+export default function EditReservationForm({ reservation }) {
+	const updatePropertyById = editReservations.bind(null, reservation._id);
+	// console.log(reservation);
+	const [formState, formAction] = useActionState(editReservations, null);
 	const [formData, setFormData] = useState({
-		reference: "",
-		agent: "",
-		clientName: "",
-		accommodation: "",
-		adults: 0,
-		kids: 0,
-		infants: 0,
-		totalPax: 0,
-		taxiCost: 0,
-		agentFee: 0,
-		totalCost: 0,
-		arrivalDetails: "arrival",
-		arrivalDate: "",
-		arrivalTime: "",
-		departureDetails: "departure",
-		departureDate: "",
-		departureTime: "",
-		details: "",
-		arrivalOnly: false,
-		departureOnly: false,
+		...reservation,
+		reservationDate: reservation.reservationDate ? reservation.reservationDate.split("T")[0] : "",
+		reservationTime: reservation.reservationTime || "00:00",
 	});
 
 	const router = useRouter();
+
 	// ✅ Check if action was successful, then redirect
 	useEffect(() => {
 		if (formState?.success) {
 			router.push("/reservations"); // ✅ Redirect from client
 		}
 	}, [formState, router]);
+
+	const handleSubmit = async event => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
+
+		const res = await updatePropertyById(formData);
+
+		if (res.success) {
+			router.push("/reservations"); // ✅ Redirect after success
+		}
+	};
 
 	const handleChange = e => {
 		const { name, value, type } = e.target;
@@ -66,7 +63,7 @@ export default function AddReservationForm() {
 	};
 
 	return (
-		<form action={formAction} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-4 w-3/5 m-auto text-gray-900">
+		<form onSubmit={handleSubmit} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-4 w-3/5 m-auto text-gray-900">
 			{/* Display success message */}
 			{formState?.message && (
 				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
@@ -152,81 +149,85 @@ export default function AddReservationForm() {
 			</div>
 
 			{/* arrival inputs */}
-			<div className="flex justify-around">
-				<Input
-					type="text"
-					name="arrivalDetails"
-					formData={formData}
-					readOnly={true}
-					extraClasses="placeholder-gray-900"
-				>
-					Details for
-				</Input>
+			{reservation.reservationType === "arrival" && (
+				<div className="flex justify-around">
+					<Input
+						type="text"
+						name="reservationType"
+						formData={formData}
+						readOnly={true}
+						extraClasses="placeholder-gray-900"
+					>
+						Details for
+					</Input>
 
-				<div>
-					<label htmlFor="arrivalDate">Arrival Date: </label>
-					<input
-						type="date"
-						id="arrivalDate"
-						name="arrivalDate"
-						value={formData.arrivalDate}
-						onChange={handleChange}
-						className="text-gray-900 text-center"
-						required
-					/>
-				</div>
+					<div>
+						<label htmlFor="reservationDate">Arrival Date: </label>
+						<input
+							type="date"
+							id="reservationDate"
+							name="reservationDate"
+							value={formData.reservationDate}
+							onChange={handleChange}
+							className="text-gray-900 text-center"
+							required
+						/>
+					</div>
 
-				<div>
-					<label htmlFor="arrivalTime">Arrival Time: </label>
-					<input
-						type="time"
-						id="arrivalTime"
-						name="arrivalTime"
-						value={formData.arrivalTime}
-						className="text-gray-900 text-center"
-						onChange={handleChange}
-						required
-					/>
+					<div>
+						<label htmlFor="reservationTime">Arrival Time: </label>
+						<input
+							type="time"
+							id="reservationTime"
+							name="reservationTime"
+							value={formData.reservationTime}
+							className="text-gray-900 text-center"
+							onChange={handleChange}
+							required
+						/>
+					</div>
 				</div>
-			</div>
+			)}
 
 			{/* departure inputs */}
-			<div className="flex justify-around">
-				<Input
-					type="text"
-					name="departureDetails"
-					formData={formData}
-					readOnly={true}
-					extraClasses="placeholder-gray-900"
-				>
-					Details for
-				</Input>
-				<div>
-					<label htmlFor="departureDate">Departure Date: </label>
-					<input
-						type="date"
-						id="departureDate"
-						name="departureDate"
-						value={formData.departureDate}
-						onChange={handleChange}
-						className="text-gray-900 text-center"
-						required
-					/>
-				</div>
+			{reservation.reservationType === "Departure" && (
+				<div className="flex justify-around">
+					<Input
+						type="text"
+						name="reservationType"
+						formData={formData}
+						readOnly={true}
+						extraClasses="placeholder-gray-900"
+					>
+						Details for
+					</Input>
+					<div>
+						<label htmlFor="reservationDate">Departure Date: </label>
+						<input
+							type="date"
+							id="reservationDate"
+							name="reservationDate"
+							value={formData.reservationDate}
+							onChange={handleChange}
+							className="text-gray-900 text-center"
+							required
+						/>
+					</div>
 
-				<div>
-					<label htmlFor="departureTime">Departure Time: </label>
-					<input
-						type="time"
-						id="departureTime"
-						name="departureTime"
-						value={formData.departureTime}
-						onChange={handleChange}
-						className="text-gray-900 text-center"
-						required
-					/>
+					<div>
+						<label htmlFor="reservationTime">Departure Time: </label>
+						<input
+							type="time"
+							id="reservationTime"
+							name="reservationTime"
+							value={formData.reservationTime}
+							onChange={handleChange}
+							className="text-gray-900 text-center"
+							required
+						/>
+					</div>
 				</div>
-			</div>
+			)}
 
 			{/* details and more */}
 			<div className="flex justify-between">
@@ -243,7 +244,7 @@ export default function AddReservationForm() {
 				</div>
 				<div className="w-full p-4 m-auto">
 					<div className="flex justify-around mb-4">
-						<label className="flex items-center gap-2">
+						{/* <label className="flex items-center gap-2">
 							<input
 								type="checkbox"
 								name="arrivalOnly"
@@ -252,16 +253,16 @@ export default function AddReservationForm() {
 								className="w-4 h-4"
 							/>
 							Arrival only
-						</label>
+						</label> */}
 						<label className="flex items-center gap-2">
 							<input
 								type="checkbox"
-								name="departureOnly"
-								checked={formData.departureOnly}
+								name="checkInOut"
+								checked={formData.checkInOut}
 								onChange={handleChange}
 								className="w-4 h-4"
 							/>
-							Departure only
+							CHECK IN / OUT
 						</label>
 					</div>
 					<Button type="submit" colorClasses="text-gray-700 border-gray-700 hover:bg-green-500 w-full text-2xl">

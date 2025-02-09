@@ -26,7 +26,7 @@ export default async function ReservationsTableBody() {
 					</td>
 					<td className="py-3 px-6 text-center">{reservation.details}</td>
 					<td className="py-3 px-6 text-center">
-						<EditButton />
+						<EditButton reservationId={reservation._id} />
 					</td>
 					<td className="py-3 px-6 text-center">
 						<DeleteButton data={reservation} dataType="reservations" />
