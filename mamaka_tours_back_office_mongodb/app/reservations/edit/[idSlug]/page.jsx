@@ -5,9 +5,7 @@ import LinkButton from "@/components/LinkButton";
 
 export default async function AddReservation({ params }) {
 	const { idSlug } = await params;
-	// console.log("ID: ", idSlug);
 	const reservation = await getReservation(idSlug);
-	// console.log("reservation: ", reservation);
 	return (
 		<>
 			<Header pageName="ADD RESERVATION PAGE">

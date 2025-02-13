@@ -36,7 +36,6 @@ export default function AddDataForm({ dataType }) {
 			setFormData({});
 		});
 	};
-	//
 
 	return (
 		<>
@@ -52,11 +51,17 @@ export default function AddDataForm({ dataType }) {
 			{show && (
 				<form onSubmit={handleSubmit} className="flex items-center gap-4 justify-between">
 					<input type="hidden" name={dataType} value={dataType} readOnly />
-					<Input type="text" name="name" formData={formData} handleChange={handleChange}>
+					<Input type="text" name="name" formData={formData} handleChange={handleChange} extraClasses="text-gray-800">
 						Name
 					</Input>
 					{dataType === "transferMean" && (
-						<Input type="text" name="fullName" formData={formData} handleChange={handleChange}>
+						<Input
+							type="text"
+							name="fullName"
+							formData={formData}
+							handleChange={handleChange}
+							extraClasses="text-gray-800"
+						>
 							Full Name
 						</Input>
 					)}

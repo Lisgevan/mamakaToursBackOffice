@@ -18,7 +18,6 @@ export default function TransferDetails({ onChange, transferDetailsData = null }
 		async function fetchReservations() {
 			try {
 				const res = await getReservations();
-				// console.log("Fetched Reservations:", res);
 				setReservations(Array.isArray(res) ? res : []);
 			} catch (error) {
 				console.error("Error fetching reservations:", error);

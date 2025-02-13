@@ -8,8 +8,7 @@ import Select from "./Select";
 import { editReservations } from "@/app/actions/edit/editReservations";
 
 export default function EditReservationForm({ reservation }) {
-	const updatePropertyById = editReservations.bind(null, reservation._id);
-	// console.log(reservation);
+	const updateReservationById = editReservations.bind(null, reservation._id);
 	const [formState, formAction] = useActionState(editReservations, null);
 	const [formData, setFormData] = useState({
 		...reservation,
@@ -30,7 +29,7 @@ export default function EditReservationForm({ reservation }) {
 		event.preventDefault();
 		const formData = new FormData(event.target);
 
-		const res = await updatePropertyById(formData);
+		const res = await updateReservationById(formData);
 
 		if (res.success) {
 			router.push("/reservations"); // ✅ Redirect after success
@@ -115,14 +114,7 @@ export default function EditReservationForm({ reservation }) {
 					>
 						Infants
 					</Input>
-					<Input
-						type="number"
-						name="totalPax"
-						formData={formData}
-						// handleChange={handleChange}
-						extraClasses="w-12"
-						readOnly={true}
-					>
+					<Input type="number" name="totalPax" formData={formData} extraClasses="w-12" readOnly={true}>
 						Total Pax
 					</Input>
 				</div>
@@ -136,14 +128,7 @@ export default function EditReservationForm({ reservation }) {
 				<Input type="number" name="agentFee" formData={formData} handleChange={handleChange} extraClasses="w-20">
 					Agent Fee
 				</Input>
-				<Input
-					type="number"
-					name="totalCost"
-					formData={formData}
-					// handleChange={handleChange}
-					extraClasses="w-20"
-					readOnly={true}
-				>
+				<Input type="number" name="totalCost" formData={formData} extraClasses="w-20" readOnly={true}>
 					TotalCost
 				</Input>
 			</div>
@@ -244,16 +229,6 @@ export default function EditReservationForm({ reservation }) {
 				</div>
 				<div className="w-full p-4 m-auto">
 					<div className="flex justify-around mb-4">
-						{/* <label className="flex items-center gap-2">
-							<input
-								type="checkbox"
-								name="arrivalOnly"
-								checked={formData.arrivalOnly}
-								onChange={handleChange}
-								className="w-4 h-4"
-							/>
-							Arrival only
-						</label> */}
 						<label className="flex items-center gap-2">
 							<input
 								type="checkbox"

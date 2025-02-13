@@ -8,8 +8,6 @@ export async function addAccommodations(prevState, formData) {
 	try {
 		await connectToDatabase();
 
-		console.log(formData);
-
 		const newTransfer = new Accommodations(finalFormData);
 		await newTransfer.save();
 

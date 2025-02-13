@@ -118,14 +118,7 @@ export default function AddReservationForm() {
 					>
 						Infants
 					</Input>
-					<Input
-						type="number"
-						name="totalPax"
-						formData={formData}
-						// handleChange={handleChange}
-						extraClasses="w-12"
-						readOnly={true}
-					>
+					<Input type="number" name="totalPax" formData={formData} extraClasses="w-12" readOnly={true}>
 						Total Pax
 					</Input>
 				</div>
@@ -139,14 +132,7 @@ export default function AddReservationForm() {
 				<Input type="number" name="agentFee" formData={formData} handleChange={handleChange} extraClasses="w-20">
 					Agent Fee
 				</Input>
-				<Input
-					type="number"
-					name="totalCost"
-					formData={formData}
-					// handleChange={handleChange}
-					extraClasses="w-20"
-					readOnly={true}
-				>
+				<Input type="number" name="totalCost" formData={formData} extraClasses="w-20" readOnly={true}>
 					TotalCost
 				</Input>
 			</div>

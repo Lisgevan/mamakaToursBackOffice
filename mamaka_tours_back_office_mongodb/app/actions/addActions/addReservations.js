@@ -7,7 +7,6 @@ import { revalidatePath } from "next/cache";
 export async function addReservations(prevState, formData) {
 	try {
 		await connectToDatabase();
-		console.log(formData);
 
 		// Extract form data
 		const {

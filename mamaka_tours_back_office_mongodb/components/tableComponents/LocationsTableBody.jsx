@@ -16,7 +16,7 @@ export default async function LocationsTableBody() {
 					<td className="py-3 px-6 text-center">{location._id}</td>
 					<td className="py-3 px-6 text-center">{location.name}</td>
 					<td className="py-3 px-6 text-center">
-						<EditButton />
+						<EditButton dataItemId={location._id} dataItemType="locations" />
 					</td>
 					<td className="py-3 px-6 text-center">
 						<DeleteButton data={location} dataType="locations" />

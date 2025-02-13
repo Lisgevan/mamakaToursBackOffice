@@ -49,7 +49,7 @@ export default async function ReservationsTableBody() {
 				</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">
-					<EditButton />
+					<EditButton dataItemType="reservations" />
 				</td>
 				<td className="py-3 px-6 text-center">
 					<DeleteButton />

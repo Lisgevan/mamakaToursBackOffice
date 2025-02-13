@@ -17,8 +17,6 @@ export async function addData(prevState, formData) {
 		// ✅ Extract dataType separately
 		const { dataType, ...dataValues } = formDataObj;
 
-		console.log("Received Data:", dataValues, "Data Type:", dataType);
-
 		// ✅ Choose the correct MongoDB model
 		let Model;
 		switch (dataType) {

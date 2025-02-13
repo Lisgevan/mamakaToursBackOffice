@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 // import Transfers from "../models/Transfers.js";
 
-// const MONGO_URI = "mongodb://127.0.0.1:27017/mamaka_tours"; // Replace with your MongoDB URI
 const MONGO_URI = process.env.MONGODB_URI; // Replace with your MongoDB URI
 console.debug("MONGO_URI: ", MONGO_URI);
 
 const testConnection = async () => {
 	try {
 		// Connect to MongoDB
-		await mongoose.connect(MONGO_URI, {
-			// useNewUrlParser: true,
-			// useUnifiedTopology: true,
-		});
+		await mongoose.connect(MONGO_URI, {});
 		console.log("Connected to MongoDB!");
 
 		// Retrieve data from the Transfers collection

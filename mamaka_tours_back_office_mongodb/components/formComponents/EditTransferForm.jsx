@@ -8,8 +8,11 @@ import { useRouter } from "next/navigation";
 import Select from "./Select";
 import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import TransferDetails from "../TransferDetails";
+import { editTransfers } from "@/app/actions/edit/editTransfers";
 
 export default function EditTransfernForm({ transfer }) {
+	const updateTransferById = editTransfers.bind(null, transfer._id);
+
 	const [formState, formAction] = useActionState(addTransfers, null);
 	const [selectedTransferId, setSelectedTransferId] = useState(""); // ID of the selected transfer
 	const [fullName, setFullName] = useState(""); // Auto-filled value
@@ -61,8 +64,19 @@ export default function EditTransfernForm({ transfer }) {
 		}
 	};
 
+	const handleSubmit = async event => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
+
+		const res = await updateTransferById(formData);
+
+		if (res.success) {
+			router.push("/transfers"); // ✅ Redirect after success
+		}
+	};
+
 	return (
-		<form action={formAction} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-2 w-3/5 m-auto text-gray-900">
+		<form onSubmit={handleSubmit} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-2 w-3/5 m-auto text-gray-900">
 			{/* Display success message */}
 			{formState?.message && (
 				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
