@@ -1,15 +1,14 @@
 import connectToDatabase from "@/lib/mongodb";
 import CheckBox from "../Checkbox";
 import EditButton from "../EditButton";
-import Transfers from "@/models/Transfers";
 import formatDate from "@/lib/formatDate";
 import DeleteButton from "../DeleteButton";
+import { getTransfers } from "@/app/actions/getActions/getTransfers";
 
 export default async function TransfersTableBody() {
 	await connectToDatabase();
 
-	const transfersData = await Transfers.find().lean();
-	const transfers = JSON.parse(JSON.stringify(transfersData));
+	const transfers = await getTransfers();
 
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
