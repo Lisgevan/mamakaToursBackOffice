@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import Button from "./Button";
 import Input from "./formComponents/Input";
-import { editData } from "@/app/actions/edit/editData";
+import { editData } from "@/app/actions/editActions/editData";
 import { getDataById } from "@/app/actions/getActions/getDataById";
 
 export default function EditModal() {

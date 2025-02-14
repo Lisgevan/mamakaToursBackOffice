@@ -42,6 +42,9 @@ export default function TableHead({ tableType }) {
 		case "reservations":
 			tableHeadList = reservationsHeadList;
 			break;
+		case "reservationsReport":
+			tableHeadList = reservationsHeadList;
+			break;
 		case "transfers":
 			tableHeadList = transfersHeadList;
 			break;
@@ -61,8 +64,10 @@ export default function TableHead({ tableType }) {
 			break;
 	}
 
+	const topPosition = tableType === "reservationsReport" ? "top-48" : "top-36";
+
 	return (
-		<thead className="z-10 sticky top-36">
+		<thead className={`z-10 sticky ${topPosition}`}>
 			<tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
 				{tableHeadList.map((headTitle, index) => (
 					<th key={index} className="py-3 px-6 text-center">

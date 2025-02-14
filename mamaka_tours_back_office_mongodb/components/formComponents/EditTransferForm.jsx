@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Select from "./Select";
 import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import TransferDetails from "../TransferDetails";
-import { editTransfers } from "@/app/actions/edit/editTransfers";
+import { editTransfers } from "@/app/actions/editActions/editTransfers";
 
 export default function EditTransfernForm({ transfer }) {
 	const updateTransferById = editTransfers.bind(null, transfer._id);

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Button from "./Button";
-import { getReservations } from "@/app/actions/getActions/getReservations";
+import { getReservations } from "@/app/actions/reportActions/getReportReservations";
 
 export default function TransferDetails({ onChange, transferDetailsData = null }) {
 	const [reservations, setReservations] = useState([]);

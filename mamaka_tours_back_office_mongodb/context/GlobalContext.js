@@ -11,6 +11,8 @@ const GlobalContext = createContext({
 	setDataType: () => {},
 	dataId: "",
 	setDataId: () => {},
+	reportReservationFilter: {},
+	setReportReservationFilter: () => {},
 });
 
 // Create Provider
@@ -18,6 +20,7 @@ export function GlobalProvider({ children }) {
 	const [showModal, setShowModal] = useState(false);
 	const [dataType, setDataType] = useState("");
 	const [dataId, setDataId] = useState("");
+	const [reportReservationFilter, setReportReservationFilter] = useState({ agent: "", dateFrom: "", dateTo: "" });
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -34,7 +37,18 @@ export function GlobalProvider({ children }) {
 	}, [showModal]);
 
 	return (
-		<GlobalContext.Provider value={{ showModal, setShowModal, dataType, setDataType, dataId, setDataId }}>
+		<GlobalContext.Provider
+			value={{
+				showModal,
+				setShowModal,
+				dataType,
+				setDataType,
+				dataId,
+				setDataId,
+				reportReservationFilter,
+				setReportReservationFilter,
+			}}
+		>
 			{children}
 		</GlobalContext.Provider>
 	);

@@ -2,10 +2,17 @@ import CheckBox from "../Checkbox";
 import EditButton from "../EditButton";
 import formatDate from "@/lib/formatDate";
 import DeleteButton from "../DeleteButton";
-import { getReservations } from "@/app/actions/getActions/getReservations";
+import { getReportReservations } from "@/app/actions/reportActions/getReportReservations";
 
-export default async function ReservationsTableBody() {
-	const reservations = await getReservations();
+export default async function ReservationsReportTableBody({ reportSearchParams }) {
+	let reservations;
+	if (Object.keys(reportSearchParams).length) {
+		const { agent, dateFrom, dateTo } = reportSearchParams;
+		console.log("searchParams", agent, dateFrom, dateTo);
+		reservations = await getReportReservations(agent, dateFrom, dateTo);
+	} else {
+		reservations = await getReportReservations();
+	}
 
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">

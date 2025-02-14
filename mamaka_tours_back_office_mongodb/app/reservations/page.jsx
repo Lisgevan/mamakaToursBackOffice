@@ -1,5 +1,4 @@
 import { unstable_noStore as noStore } from "next/cache";
-import FromToAgentPicker from "@/components/FromToAgentPicker";
 import Header from "@/components/Header";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import LinkButton from "@/components/LinkButton";
@@ -13,7 +12,9 @@ function ReservationsPage() {
 				<LinkButton href="/reservations/add" cssClasses="text-green-500 border-green-500 hover:bg-green-500">
 					Add Reservation
 				</LinkButton>
-				<FromToAgentPicker primaryColor="teal" />
+				<LinkButton href="/reservations/reports" cssClasses="text-indigo-500 border-indigo-500 hover:bg-indigo-500">
+					Reports Page
+				</LinkButton>
 			</Header>
 
 			<TableContainer tableType="reservations" />
