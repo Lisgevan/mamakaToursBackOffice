@@ -3,8 +3,9 @@ import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import { unstable_noStore as noStore } from "next/cache";
 
-async function ReservationsPage() {
+async function TransfersPage({ searchParams }) {
 	noStore();
+	const reportSearchParams = await searchParams;
 
 	return (
 		<>
@@ -16,8 +17,8 @@ async function ReservationsPage() {
 					Reports Page
 				</LinkButton>
 			</Header>
-			<TableContainer tableType="transfers" />
+			<TableContainer tableType="transfersReport" reportSearchParams={reportSearchParams} />
 		</>
 	);
 }
-export default ReservationsPage;
+export default TransfersPage;

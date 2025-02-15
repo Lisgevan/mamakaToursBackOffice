@@ -48,6 +48,9 @@ export default function TableHead({ tableType }) {
 		case "transfers":
 			tableHeadList = transfersHeadList;
 			break;
+		case "transfersReport":
+			tableHeadList = transfersHeadList;
+			break;
 		case "accommodations":
 			tableHeadList = accommodationsHeadList;
 			break;

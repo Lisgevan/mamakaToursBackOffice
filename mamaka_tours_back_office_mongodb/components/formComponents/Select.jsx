@@ -60,7 +60,7 @@ export default function Select({ name, children, extraClasses = "", required = t
 				value={selectValue}
 				className={`text-gray-900 ps-2 ${extraClasses}`}
 				onChange={onChange}
-				required
+				required={required}
 			>
 				<option value="">Select...</option>
 				{selections.map(selection => (

@@ -13,6 +13,8 @@ const GlobalContext = createContext({
 	setDataId: () => {},
 	reportReservationFilter: {},
 	setReportReservationFilter: () => {},
+	reportTransferFilter: {},
+	setReportTransferFilter: () => {},
 });
 
 // Create Provider
@@ -21,6 +23,14 @@ export function GlobalProvider({ children }) {
 	const [dataType, setDataType] = useState("");
 	const [dataId, setDataId] = useState("");
 	const [reportReservationFilter, setReportReservationFilter] = useState({ agent: "", dateFrom: "", dateTo: "" });
+	const [reportTransferFilter, setReportTransferFilter] = useState({
+		transferType: "",
+		agent: "",
+		transferMean: "",
+		dateFrom: "",
+		dateTo: "",
+		paid: false,
+	});
 
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -47,6 +57,8 @@ export function GlobalProvider({ children }) {
 				setDataId,
 				reportReservationFilter,
 				setReportReservationFilter,
+				reportTransferFilter,
+				setReportTransferFilter,
 			}}
 		>
 			{children}

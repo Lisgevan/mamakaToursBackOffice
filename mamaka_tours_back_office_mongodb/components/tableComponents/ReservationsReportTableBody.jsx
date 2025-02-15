@@ -8,7 +8,6 @@ export default async function ReservationsReportTableBody({ reportSearchParams }
 	let reservations;
 	if (Object.keys(reportSearchParams).length) {
 		const { agent, dateFrom, dateTo } = reportSearchParams;
-		console.log("searchParams", agent, dateFrom, dateTo);
 		reservations = await getReportReservations(agent, dateFrom, dateTo);
 	} else {
 		reservations = await getReportReservations();

@@ -28,12 +28,8 @@ export default async function TransfermeanTableBody() {
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">
-					<EditButton />
-				</td>
-				<td className="py-3 px-6 text-center">
-					<DeleteButton />
-				</td>
+				<td className="py-3 px-6 text-center"></td>
+				<td className="py-3 px-6 text-center"></td>
 			</tr>
 		</tbody>
 	);

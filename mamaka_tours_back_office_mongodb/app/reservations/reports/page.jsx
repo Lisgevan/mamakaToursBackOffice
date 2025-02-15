@@ -4,7 +4,7 @@ import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import ReportReservationForm from "@/components/formComponents/ReportReservationForm";
 
-export default async function ReportsPage({ searchParams }) {
+export default async function ReservationsReportsPage({ searchParams }) {
 	noStore();
 	const reportSearchParams = await searchParams;
 

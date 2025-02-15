@@ -26,12 +26,8 @@ export default async function AgentsTableBody() {
 			<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">
-					<EditButton />
-				</td>
-				<td className="py-3 px-6 text-center">
-					<DeleteButton />
-				</td>
+				<td className="py-3 px-6 text-center"></td>
+				<td className="py-3 px-6 text-center"></td>
 			</tr>
 		</tbody>
 	);

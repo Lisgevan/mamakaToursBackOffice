@@ -6,6 +6,7 @@ import AgentsTableBody from "./AgentsTableBody";
 import LocationsTableBody from "./LocationsTableBody";
 import TransfermeanTableBody from "./TransferMeanTableBody";
 import ReservationsReportTableBody from "./ReservationsReportTableBody";
+import TransfersReportTableBody from "./TransfersReportTableBody";
 
 function TableContainer({ tableType, reportSearchParams }) {
 	let tableBody;
@@ -23,6 +24,8 @@ function TableContainer({ tableType, reportSearchParams }) {
 		tableBody = <TransfermeanTableBody />;
 	} else if (tableType === "reservationsReport") {
 		tableBody = <ReservationsReportTableBody reportSearchParams={reportSearchParams} />;
+	} else if (tableType === "transfersReport") {
+		tableBody = <TransfersReportTableBody reportSearchParams={reportSearchParams} />;
 	}
 
 	return (
