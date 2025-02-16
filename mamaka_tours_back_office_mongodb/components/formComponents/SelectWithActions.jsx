@@ -10,10 +10,6 @@ import { useEffect, useState } from "react";
 export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {}, dataItem }) {
 	const [selections, setSelections] = useState([]);
 
-	// const transferType = [
-	// 	{ _id: 1, name: "Land Transfer" },
-	// 	{ _id: 2, name: "Sea Transfer" },
-	// ];
 	const transferType = () => {
 		const data = [
 			{ _id: "1", name: "Land Transfer" },
@@ -42,23 +38,17 @@ export default function Select({ name, children, extraClasses = "", required = t
 			try {
 				let data;
 				if (name === "agent") {
-					// console.log("Fetching agents...."); // ✅ Debugging
 					data = await getAgents();
-					// console.log("Fetched agents:", data); // ✅ Debugging
 				} else if (name === "accommodation") {
 					data = await getAccommodations();
 				} else if (name === "transferMean") {
-					// console.log("Fetching transfer means...."); // ✅ Debugging
 					data = await getTransferMean();
-					// console.log("Fetched transfer means:", data); // ✅ Debugging
 				} else if (name === "reservations") {
 					data = await getReservations();
 				} else if (name === "locationFrom" || name === "locationTo") {
 					data = await getLocations();
 				} else if (name === "transferType") {
-					// console.log("Fetching types...."); // ✅ Debugging
 					data = transferType();
-					// console.log("Fetched types,", data); // ✅ Debugging
 				} else {
 					console.warn("Unknown select name:", name);
 				}
@@ -82,16 +72,11 @@ export default function Select({ name, children, extraClasses = "", required = t
 				required={required}
 			>
 				<option value="">Select...</option>
-				{selections.map(selection => {
-					{
-						/* console.log("Selection item:", <selec></selec>tion); // ✅ Debugging */
-					}
-					return (
-						<option key={selection._id} value={selection.name}>
-							{selection.name}
-						</option>
-					);
-				})}
+				{selections.map(selection => (
+					<option key={selection._id} value={selection.name}>
+						{selection.name}
+					</option>
+				))}
 			</select>
 		</div>
 	);
