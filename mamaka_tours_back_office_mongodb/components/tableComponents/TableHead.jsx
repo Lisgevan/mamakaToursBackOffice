@@ -1,7 +1,7 @@
 export default function TableHead({ tableType }) {
 	let tableHeadList = [];
 	const reservationsHeadList = [
-		"ID",
+		// "ID",
 		"Reference",
 		"Agent",
 		"Accommodation",
@@ -17,7 +17,7 @@ export default function TableHead({ tableType }) {
 		"DETELE",
 	];
 	const transfersHeadList = [
-		"ID",
+		// "ID",
 		"Transfer Type",
 		"Agent",
 		"Means",
@@ -67,7 +67,9 @@ export default function TableHead({ tableType }) {
 			break;
 	}
 
-	const topPosition = tableType === "reservationsReport" ? "top-48" : "top-36";
+	let topPosition = "";
+	topPosition = tableType === "reservationsReport" ? "top-48" : "top-36";
+	topPosition = tableType === "transfersReport" ? "top-[200px]" : "top-36";
 
 	return (
 		<thead className={`z-10 sticky ${topPosition}`}>

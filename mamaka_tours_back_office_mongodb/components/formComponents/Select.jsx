@@ -1,19 +1,18 @@
 "use client";
-
-import { getAccommodations } from "@/app/actions/getActions/getAccommodations";
-import { getAgents } from "@/app/actions/getActions/getAgents";
-import { getLocations } from "@/app/actions/getActions/getLocations";
-import { getReservations } from "@/app/actions/getActions/getReservations";
-import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
 import { useEffect, useState } from "react";
 
-export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {}, dataItem }) {
-	const [selections, setSelections] = useState([]);
-
-	const transferType = [
-		{ _id: 1, name: "Land Transfer" },
-		{ _id: 2, name: "Sea Transfer" },
-	];
+export default function Select({
+	dataType,
+	dataItem,
+	name,
+	children,
+	extraClasses = "",
+	required = true,
+	onChange = () => {},
+}) {
+	const [options, setOptions] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	let selectValue;
 	if (name === "agent") {
@@ -31,44 +30,74 @@ export default function Select({ name, children, extraClasses = "", required = t
 	}
 
 	useEffect(() => {
-		async function fetchSelections() {
-			let data;
-			if (name === "agent") {
-				data = await getAgents();
-			} else if (name === "accommodation") {
-				data = await getAccommodations();
-			} else if (name === "transferType") {
-				data = transferType;
-			} else if (name === "transferMean") {
-				data = await getTransferMean();
-			} else if (name === "rservations") {
-				data = await getReservations();
-			} else if (name === "locationFrom" || name === "locationTo") {
-				data = await getLocations();
+		let isMounted = true; // ✅ Prevent unnecessary updates
+
+		async function fetchData() {
+			try {
+				if (dataType !== "transferType") {
+					console.log(`Fetching data for ${dataType}...`); // ✅ Debugging
+
+					const res = await fetch(`/api/transfers/reports?dataType=${dataType}`);
+					const result = await res.json();
+
+					console.log("API Response:", result); // ✅ Check the response
+
+					if (isMounted) {
+						if (result.success) {
+							setOptions(result.data);
+						} else {
+							setError(result.message);
+						}
+						setLoading(false);
+					}
+				} else if (dataType === "transferType") {
+					setOptions([
+						{ _id: "1", name: "Land Transfer" },
+						{ _id: "2", name: "See Transfer" },
+					]);
+					setLoading(false);
+				}
+			} catch (err) {
+				if (isMounted) {
+					setError("Failed to load data.");
+					setLoading(false);
+				}
 			}
-			setSelections(data);
 		}
-		fetchSelections();
-	}, []);
+
+		fetchData();
+
+		return () => {
+			isMounted = false; // ✅ Cleanup to avoid memory leaks
+		};
+	}, [dataType]); // ✅ Only re-fetch when `dataType` changes
 
 	return (
 		<div>
-			<label htmlFor={name}>{children}</label>
-			<select
-				name={name}
-				id={name}
-				value={selectValue}
-				className={`text-gray-900 ps-2 ${extraClasses}`}
-				onChange={onChange}
-				required={required}
-			>
-				<option value="">Select...</option>
-				{selections.map(selection => (
-					<option key={selection._id} value={selection.name}>
-						{selection.name}
-					</option>
-				))}
-			</select>
+			{loading ? (
+				<p>Loading...</p>
+			) : error ? (
+				<p className="text-red-500">{error}</p>
+			) : (
+				<>
+					<label htmlFor={name}>{children}</label>
+					<select
+						name={name}
+						id={name}
+						value={selectValue}
+						className={`text-gray-900 ps-2 ${extraClasses}`}
+						onChange={onChange}
+						required={required}
+					>
+						<option value="">Select . . .</option>
+						{options.map(item => (
+							<option key={item._id} value={item.name}>
+								{item.name}
+							</option>
+						))}
+					</select>
+				</>
+			)}
 		</div>
 	);
 }

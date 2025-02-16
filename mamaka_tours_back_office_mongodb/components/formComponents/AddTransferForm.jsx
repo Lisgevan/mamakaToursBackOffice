@@ -6,10 +6,12 @@ import Input from "./Input";
 import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
-import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
+import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import TransferDetails from "../TransferDetails";
+import { unstable_noStore } from "next/cache";
 
 export default function AddTransfernForm() {
+	unstable_noStore();
 	const [formState, formAction] = useActionState(addTransfers, null);
 	const [selectedTransferId, setSelectedTransferId] = useState(""); // ID of the selected transfer
 	const [fullName, setFullName] = useState(""); // Auto-filled value
@@ -81,17 +83,17 @@ export default function AddTransfernForm() {
 			)}
 			{/* transfer type / agent */}
 			<div className="flex justify-around ">
-				<Select name="transferType" onChange={handleChange} dataItem={formData}>
+				<Select name="transferType" dataType="transferType" onChange={handleChange} dataItem={formData}>
 					Transfer Type:{" "}
 				</Select>
-				<Select name="agent" onChange={handleChange} dataItem={formData}>
+				<Select name="agent" dataType="agents" onChange={handleChange} dataItem={formData}>
 					Transfer Agent:{" "}
 				</Select>
 			</div>
 
 			{/* Transfer Mean and name */}
 			<div className="flex justify-around">
-				<Select name="transferMean" onChange={handleSelectChange} dataItem={formData}>
+				<Select name="transferMean" dataType="transferMean" onChange={handleSelectChange} dataItem={formData}>
 					Transfer Mean:{" "}
 				</Select>
 				<div>
@@ -138,10 +140,10 @@ export default function AddTransfernForm() {
 
 			{/* location from / to */}
 			<div className="flex justify-around ">
-				<Select name="locationFrom" onChange={handleChange} dataItem={formData}>
+				<Select name="locationFrom" dataType="locations" onChange={handleChange} dataItem={formData}>
 					Location From:{" "}
 				</Select>
-				<Select name="locationTo" onChange={handleChange} dataItem={formData}>
+				<Select name="locationTo" dataType="locations" onChange={handleChange} dataItem={formData}>
 					Location To:{" "}
 				</Select>
 			</div>

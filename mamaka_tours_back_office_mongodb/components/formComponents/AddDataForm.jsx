@@ -68,6 +68,13 @@ export default function AddDataForm({ dataType }) {
 					<Button type="submit" colorClasses="text-green-700 border-green-700 hover:bg-green-500 text-2xl">
 						Add Data
 					</Button>
+					<Button
+						type="button"
+						onClick={handletoggle}
+						colorClasses="text-yellow-700 border-yellow-700 hover:bg-yellow-500 text-2xl"
+					>
+						Cancel
+					</Button>
 				</form>
 			)}
 		</>

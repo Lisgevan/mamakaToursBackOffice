@@ -77,7 +77,7 @@ export default function AddReservationForm() {
 					Reference
 				</Input>
 
-				<Select name="agent" dataItem={formData} onChange={handleChange}>
+				<Select name="agent" dataType="agents" dataItem={formData} onChange={handleChange}>
 					Agent:{" "}
 				</Select>
 			</div>
@@ -87,7 +87,13 @@ export default function AddReservationForm() {
 				<Input type="text" name="clientName" formData={formData} handleChange={handleChange}>
 					Client Name
 				</Input>
-				<Select name="accommodation" dataItem={formData} onChange={handleChange}>
+				<Select
+					key={Math.random()}
+					dataType="accommodations"
+					name="accommodation"
+					dataItem={formData}
+					onChange={handleChange}
+				>
 					Accommodation:{" "}
 				</Select>
 			</div>

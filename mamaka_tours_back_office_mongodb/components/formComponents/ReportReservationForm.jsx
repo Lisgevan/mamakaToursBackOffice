@@ -39,7 +39,7 @@ export default function ReportReservationForm() {
 
 	return (
 		<form onSubmit={hanndleSubmit} className="flex gap-4 justify-center items-center">
-			<Select name="agent" dataItem={reportReservationFilter} onChange={handleChange} required={true}>
+			<Select name="agent" dataType="agents" dataItem={reportReservationFilter} onChange={handleChange} required={true}>
 				Agent:{" "}
 			</Select>
 			<div>

@@ -73,7 +73,7 @@ export default function EditReservationForm({ reservation }) {
 					Reference
 				</Input>
 
-				<Select name="agent" dataItem={formData} onChange={handleChange}>
+				<Select name="agent" dataType="agents" dataItem={formData} onChange={handleChange}>
 					Agent:{" "}
 				</Select>
 			</div>
@@ -83,7 +83,7 @@ export default function EditReservationForm({ reservation }) {
 				<Input type="text" name="clientName" formData={formData} handleChange={handleChange}>
 					Client Name
 				</Input>
-				<Select name="accommodation" dataItem={formData} onChange={handleChange}>
+				<Select name="accommodation" dataType="accommodations" dataItem={formData} onChange={handleChange}>
 					Accommodation:{" "}
 				</Select>
 			</div>

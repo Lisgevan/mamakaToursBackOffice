@@ -6,7 +6,7 @@ import Input from "./Input";
 import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
-import { getTransferMean } from "@/app/actions/getActions/getTransfermean";
+import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import TransferDetails from "../TransferDetails";
 import { editTransfers } from "@/app/actions/editActions/editTransfers";
 
@@ -83,17 +83,17 @@ export default function EditTransfernForm({ transfer }) {
 			)}
 			{/* transfer type / agent */}
 			<div className="flex justify-around ">
-				<Select dataItem={formData} name="transferType" onChange={handleChange}>
+				<Select dataItem={formData} dataType="transferType" name="transferType" onChange={handleChange}>
 					Transfer Type:{" "}
 				</Select>
-				<Select dataItem={formData} name="agent" onChange={handleChange}>
+				<Select dataItem={formData} dataType="agents" name="agent" onChange={handleChange}>
 					Transfer Agent:{" "}
 				</Select>
 			</div>
 
 			{/* Transfer Mean and name */}
 			<div className="flex justify-around">
-				<Select dataItem={formData} name="transferMean" onChange={handleSelectChange}>
+				<Select dataItem={formData} dataType="transferMean" name="transferMean" onChange={handleSelectChange}>
 					Transfer Mean:{" "}
 				</Select>
 				<div>
@@ -140,10 +140,10 @@ export default function EditTransfernForm({ transfer }) {
 
 			{/* location from / to */}
 			<div className="flex justify-around ">
-				<Select dataItem={formData} name="locationFrom" onChange={handleChange}>
+				<Select dataItem={formData} dataType="locations" name="locationFrom" onChange={handleChange}>
 					Location From:{" "}
 				</Select>
-				<Select dataItem={formData} name="locationTo" onChange={handleChange}>
+				<Select dataItem={formData} dataType="locations" name="locationTo" onChange={handleChange}>
 					Location To:{" "}
 				</Select>
 			</div>

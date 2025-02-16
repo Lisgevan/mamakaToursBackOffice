@@ -3,7 +3,6 @@ import { redirect, useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/GlobalContext";
 import Select from "./Select";
 import Button from "../Button";
-import { useEffect } from "react";
 
 export default function ReportTransferForm() {
 	const { reportTransferFilter, setReportTransferFilter } = useGlobalContext();
@@ -56,21 +55,36 @@ export default function ReportTransferForm() {
 		redirect("/transfers/reports");
 	};
 
-	useEffect(() => {
-		console.log("reportTransferFilter", reportTransferFilter);
-	}, [reportTransferFilter]);
-
 	return (
 		<form onSubmit={hanndleSubmit} className="flex gap-4 justify-center items-center">
 			<div className="flex flex-col gap-4">
 				<div className="flex place-content-evenly gap-4">
-					<Select name="transferType" onChange={handleChange} dataItem={reportTransferFilter} required={false}>
-						Transfer Type:{" "}
-					</Select>
-					<Select name="agent" onChange={handleChange} dataItem={reportTransferFilter} required={false}>
+					<Select
+						name="agent"
+						dataType="agents"
+						onChange={handleChange}
+						dataItem={reportTransferFilter}
+						required={false}
+					>
 						Transfer Agent:{" "}
 					</Select>
-					<Select name="transferMean" onChange={handleChange} dataItem={reportTransferFilter} required={false}>
+					<Select
+						name="transferType"
+						dataType="transferType"
+						onChange={handleChange}
+						dataItem={reportTransferFilter}
+						required={false}
+					>
+						Transfer Type:{" "}
+					</Select>
+					<Select
+						key={Math.random()}
+						name="transferMean"
+						dataType="transferMean"
+						onChange={handleChange}
+						dataItem={reportTransferFilter}
+						required={false}
+					>
 						Transfer Mean:{" "}
 					</Select>
 				</div>

@@ -1,4 +1,4 @@
-import ReportTransferForm from "@/components/formComponents/ReporTransferForm";
+import ReportTransferForm from "@/components/formComponents/ReportTransferForm";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";

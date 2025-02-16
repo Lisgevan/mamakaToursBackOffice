@@ -17,7 +17,7 @@ async function TransfersPage({ searchParams }) {
 					Reports Page
 				</LinkButton>
 			</Header>
-			<TableContainer tableType="transfersReport" reportSearchParams={reportSearchParams} />
+			<TableContainer tableType="transfers" reportSearchParams={reportSearchParams} />
 		</>
 	);
 }

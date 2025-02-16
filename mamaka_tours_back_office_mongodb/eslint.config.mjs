@@ -9,7 +9,15 @@ const compat = new FlatCompat({
 	baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals, next/babel")];
+// const eslintConfig = [...compat.extends("next/core-web-vitals, next/babel")];
+const eslintConfig = [
+	...compat.config({
+		extends: ["next/core-web-vitals", "next/babel"],
+		rules: {
+			"@next/next/no-img-element": "off",
+		},
+	}),
+];
 
 export default eslintConfig;
 
