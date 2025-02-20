@@ -3,11 +3,16 @@ import { redirect, useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/GlobalContext";
 import Select from "./Select";
 import Button from "../Button";
+import { useEffect } from "react";
 
 export default function ReportTransferForm() {
 	const { reportTransferFilter, setReportTransferFilter } = useGlobalContext();
 
 	const router = useRouter();
+
+	useEffect(() => {
+		setReportTransferFilter({ transferType: "", agent: "", transferMean: "", dateFrom: "", dateTo: "", paid: false });
+	}, []);
 
 	const handleChange = e => {
 		const { name, value, type } = e.target;
@@ -31,7 +36,17 @@ export default function ReportTransferForm() {
 		reportTransferFilter.transferMean ? (parameters.transferMean = reportTransferFilter.transferMean) : null;
 		reportTransferFilter.dateFrom ? (parameters.dateFrom = reportTransferFilter.dateFrom) : null;
 		reportTransferFilter.dateTo ? (parameters.dateTo = reportTransferFilter.dateTo) : null;
-		reportTransferFilter.paid ? (parameters.paid = reportTransferFilter.paid) : null;
+		//if agent is selected, paid is set to null ==> get all transfers of agent **DONE**
+		if (reportTransferFilter.agent) {
+			parameters.paid = null;
+		}
+		if (reportTransferFilter.transferMean) {
+			reportTransferFilter.paid
+				? //if transferMean is selected and paid is checked, paid is set to null ==> get all transfers of transferMean and get totalPaid and totalNotPaid
+				  null
+				: //if transferMean is selected and paid is not checked, paid is set to false ==> get all transfers of transferMean to be paid
+				  (parameters.paid = false);
+		}
 
 		// Create search params
 		const searchParams = new URLSearchParams(parameters);
@@ -78,7 +93,6 @@ export default function ReportTransferForm() {
 						Transfer Type:{" "}
 					</Select>
 					<Select
-						key={Math.random()}
 						name="transferMean"
 						dataType="transferMean"
 						onChange={handleChange}

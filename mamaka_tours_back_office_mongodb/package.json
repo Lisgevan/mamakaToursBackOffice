@@ -10,6 +10,8 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@ag-media/react-pdf-table": "^2.0.1",
+		"@react-pdf/renderer": "^4.2.1",
 		"mongodb": "^6.12.0",
 		"mongoose": "^8.9.5",
 		"next": "15.1.6",

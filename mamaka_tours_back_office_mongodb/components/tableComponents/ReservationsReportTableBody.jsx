@@ -46,7 +46,7 @@ export default async function ReservationsReportTableBody({ reportSearchParams }
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
+				<td className="py-3 px-6 text-center font-semibold">Total: </td>
 				<td className="py-3 px-6 text-center font-semibold">{Number(totalCost).toFixed(2)}</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>

@@ -3,11 +3,16 @@ import { redirect, useRouter } from "next/navigation";
 import { useGlobalContext } from "@/context/GlobalContext";
 import Select from "./Select";
 import Button from "../Button";
+import { useEffect } from "react";
 
 export default function ReportReservationForm() {
 	const { reportReservationFilter, setReportReservationFilter } = useGlobalContext();
 
 	const router = useRouter();
+
+	useEffect(() => {
+		setReportReservationFilter({ agent: "", dateFrom: "", dateTo: "" });
+	}, []);
 
 	const handleChange = e => {
 		const { name, value } = e.target;

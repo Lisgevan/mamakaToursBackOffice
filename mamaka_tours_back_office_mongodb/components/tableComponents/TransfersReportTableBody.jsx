@@ -17,6 +17,8 @@ export default async function TransfersReportTableBody({ reportSearchParams }) {
 	}
 
 	const totalPrice = transfers.reduce((acc, transfer) => acc + transfer.price, 0);
+	const totalPaid = transfers.reduce((acc, transfer) => acc + (transfer.paid === true ? transfer.price : 0), 0);
+	const totalNotPaid = transfers.reduce((acc, transfer) => acc + (transfer.paid === false ? transfer.price : 0), 0);
 
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
@@ -48,13 +50,13 @@ export default async function TransfersReportTableBody({ reportSearchParams }) {
 			))}
 			<tr className="sticky bottom-0 bg-white border-b border-gray-200 hover:bg-gray-100">
 				{/* <td className="py-3 px-6 text-center">-</td> */}
+				<td className="py-3 px-6 text-center">{totalPaid ? "Paid: " : ""}</td>
+				<td className="py-3 px-6 text-center">{totalPaid ? Number(totalPaid).toFixed(2) : ""}</td>
 				<td className="py-3 px-6 text-center">-</td>
+				<td className="py-3 px-6 text-center">{totalNotPaid ? "Not Paid: " : ""}</td>
+				<td className="py-3 px-6 text-center">{totalNotPaid ? Number(totalNotPaid).toFixed(2) : ""}</td>
 				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
+				<td className="py-3 px-6 text-center font-semibold">Total Cost</td>
 				<td className="py-3 px-6 text-center font-semibold">{Number(totalPrice).toFixed(2)}</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>

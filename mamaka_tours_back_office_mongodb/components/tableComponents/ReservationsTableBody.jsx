@@ -7,6 +7,8 @@ import { getReservations } from "@/app/actions/getActions/getReservations";
 export default async function ReservationsTableBody() {
 	const reservations = await getReservations();
 
+	const totalCharge = reservations.reduce((acc, reservation) => acc + reservation.totalCost, 0);
+
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
 			{reservations.map(reservation => (
@@ -38,8 +40,8 @@ export default async function ReservationsTableBody() {
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
-				<td className="py-3 px-6 text-center">-</td>
+				<td className="py-3 px-6 text-center font-bold">Total: </td>
+				<td className="py-3 px-6 text-center font-bold">{Number(totalCharge).toFixed(2)}</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>
 				<td className="py-3 px-6 text-center">-</td>

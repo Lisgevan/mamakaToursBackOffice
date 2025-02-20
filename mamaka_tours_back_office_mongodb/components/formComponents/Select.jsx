@@ -35,12 +35,12 @@ export default function Select({
 		async function fetchData() {
 			try {
 				if (dataType !== "transferType") {
-					console.log(`Fetching data for ${dataType}...`); // ✅ Debugging
+					// console.log(`Fetching data for ${dataType}...`); // ✅ Debugging
 
 					const res = await fetch(`/api/transfers/reports?dataType=${dataType}`);
 					const result = await res.json();
 
-					console.log("API Response:", result); // ✅ Check the response
+					// console.log("API Response:", result); // ✅ Check the response
 
 					if (isMounted) {
 						if (result.success) {

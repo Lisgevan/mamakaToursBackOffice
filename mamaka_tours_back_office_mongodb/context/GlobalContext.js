@@ -15,6 +15,8 @@ const GlobalContext = createContext({
 	setReportReservationFilter: () => {},
 	reportTransferFilter: {},
 	setReportTransferFilter: () => {},
+	pdfContent: {},
+	setPdfContent: () => {},
 });
 
 // Create Provider
@@ -22,6 +24,7 @@ export function GlobalProvider({ children }) {
 	const [showModal, setShowModal] = useState(false);
 	const [dataType, setDataType] = useState("");
 	const [dataId, setDataId] = useState("");
+	const [pdfContent, setPdfContent] = useState("");
 	const [reportReservationFilter, setReportReservationFilter] = useState({ agent: "", dateFrom: "", dateTo: "" });
 	const [reportTransferFilter, setReportTransferFilter] = useState({
 		transferType: "",
@@ -59,6 +62,8 @@ export function GlobalProvider({ children }) {
 				setReportReservationFilter,
 				reportTransferFilter,
 				setReportTransferFilter,
+				pdfContent,
+				setPdfContent,
 			}}
 		>
 			{children}
