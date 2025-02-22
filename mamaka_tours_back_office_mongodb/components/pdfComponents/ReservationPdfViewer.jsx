@@ -1,6 +1,6 @@
 "use client";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Button from "../Button";
 import ReservationReportPdf from "./ReservationReportPdf";
 
@@ -8,10 +8,10 @@ export default function ReservationPdfViewer({ reservationsList, reportSearchPar
 	// Ensure reservationsList is an array
 	const safeReservationsList = Array.isArray(reservationsList) ? reservationsList : [];
 
-	useEffect(() => {
-		console.log("reservationsList updated:", safeReservationsList);
-		console.log("reportSearchParams updated:", reportSearchParams);
-	}, [safeReservationsList, reportSearchParams]);
+	// useEffect(() => {
+	// 	console.log("reservationsList updated:", safeReservationsList);
+	// 	console.log("reportSearchParams updated:", reportSearchParams);
+	// }, [safeReservationsList, reportSearchParams]);
 
 	let reportFilename;
 	if (reportSearchParams?.agent) {

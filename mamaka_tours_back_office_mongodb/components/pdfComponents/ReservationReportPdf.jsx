@@ -3,13 +3,13 @@ import { reservationReportPdfStyles as styles } from "@/components/pdfComponents
 import formatDate from "@/lib/formatDate";
 import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
 import { Document, Font, Page, Text, View } from "@react-pdf/renderer";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export default function ReservationReportPdf({ reservationsList, reportSearchParams }) {
-	useEffect(() => {
-		console.log("reservationsList updated:", reservationsList);
-		console.log("reportSearchParams updated:", reportSearchParams);
-	}, [reservationsList, reportSearchParams]);
+	// useEffect(() => {
+	// 	console.log("reservationsList updated:", reservationsList);
+	// 	console.log("reportSearchParams updated:", reportSearchParams);
+	// }, [reservationsList, reportSearchParams]);
 
 	let reservationsHeadList = [];
 	let title;

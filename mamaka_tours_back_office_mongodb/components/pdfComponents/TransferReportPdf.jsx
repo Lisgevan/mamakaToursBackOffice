@@ -3,13 +3,13 @@ import { transferReportPdfStyles as styles } from "@/components/pdfComponents/tr
 import formatDate from "@/lib/formatDate";
 import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
 import { Document, Font, Page, Text, View } from "@react-pdf/renderer";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export default function TransferReportPdf({ transfersList, reportSearchParams }) {
-	useEffect(() => {
-		console.log("transfersList updated:", transfersList);
-		console.log("reportSearchParams updated:", reportSearchParams);
-	}, [transfersList, reportSearchParams]);
+	// useEffect(() => {
+	// 	console.log("transfersList updated:", transfersList);
+	// 	console.log("reportSearchParams updated:", reportSearchParams);
+	// }, [transfersList, reportSearchParams]);
 
 	let transfersHeadList = [];
 	let title;

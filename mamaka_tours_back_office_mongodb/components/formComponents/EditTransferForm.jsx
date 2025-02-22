@@ -3,11 +3,11 @@
 import { useActionState, useState, useEffect } from "react";
 import Button from "../Button";
 import Input from "./Input";
-import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { useRouter } from "next/navigation";
 import Select from "./Select";
-import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import TransferDetails from "../TransferDetails";
+import { addTransfers } from "@/app/actions/addActions/addTransfers";
+import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import { editTransfers } from "@/app/actions/editActions/editTransfers";
 
 export default function EditTransfernForm({ transfer }) {
