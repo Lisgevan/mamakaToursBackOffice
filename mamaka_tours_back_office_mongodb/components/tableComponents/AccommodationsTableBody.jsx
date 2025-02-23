@@ -1,14 +1,7 @@
-import connectToDatabase from "@/lib/mongodb";
 import EditButton from "../EditButton";
-import Accommodations from "@/models/Accommodations";
 import DeleteButton from "../DeleteButton";
 
-export default async function AccommodationsTableBody() {
-	await connectToDatabase();
-
-	const accommodationsData = await Accommodations.find().lean();
-	const accommodations = JSON.parse(JSON.stringify(accommodationsData));
-
+export default async function AccommodationsTableBody({ accommodations }) {
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
 			{accommodations.map(accommodation => (

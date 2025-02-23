@@ -1,14 +1,7 @@
-import connectToDatabase from "@/lib/mongodb";
 import EditButton from "../EditButton";
-import TransferMean from "@/models/TransferMean";
 import DeleteButton from "../DeleteButton";
 
-export default async function TransfermeanTableBody() {
-	await connectToDatabase();
-
-	const transferMeanData = await TransferMean.find().lean();
-	const transferMeans = JSON.parse(JSON.stringify(transferMeanData));
-
+export default async function TransfermeanTableBody({ transferMeans }) {
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
 			{transferMeans.map(transferMean => (

@@ -1,7 +1,8 @@
-import { getReservation } from "@/app/(main)/actions/getActions/getReservation";
-import EditReservationForm from "@/app/(main)/components/formComponents/EditReservationForm";
-import Header from "@/app/(main)/components/Header";
-import LinkButton from "@/app/(main)/components/LinkButton";
+// import { getReservation } from "@/actions/getActions/getReservation";
+import { getReservation } from "@/app/actions/getActions/getReservation";
+import EditReservationForm from "@/components/formComponents/EditReservationForm";
+import Header from "@/components/Header";
+import LinkButton from "@/components/LinkButton";
 
 export default async function AddReservation({ params }) {
 	const { idSlug } = await params;

@@ -1,14 +1,7 @@
-import connectToDatabase from "@/lib/mongodb";
 import EditButton from "../EditButton";
-import Agents from "@/models/Agents";
 import DeleteButton from "../DeleteButton";
 
-export default async function AgentsTableBody() {
-	await connectToDatabase();
-
-	const agentsData = await Agents.find().lean();
-	const agents = JSON.parse(JSON.stringify(agentsData));
-
+export default async function AgentsTableBody({ agents }) {
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
 			{agents.map(agent => (

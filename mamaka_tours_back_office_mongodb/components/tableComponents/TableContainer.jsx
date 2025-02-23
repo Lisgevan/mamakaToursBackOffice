@@ -8,20 +8,20 @@ import TransfermeanTableBody from "./TransferMeanTableBody";
 import ReservationsReportTableBody from "./ReservationsReportTableBody";
 import TransfersReportTableBody from "./TransfersReportTableBody";
 
-function TableContainer({ tableType, reportSearchParams }) {
+function TableContainer({ tableType, reportSearchParams, data }) {
 	let tableBody;
 	if (tableType === "reservations") {
 		tableBody = <ReservationsTableBody />;
 	} else if (tableType === "transfers") {
 		tableBody = <TransfersTableBody />;
 	} else if (tableType === "accommodations") {
-		tableBody = <AccommodationsTableBody />;
+		tableBody = <AccommodationsTableBody accommodations={data} />;
 	} else if (tableType === "agents") {
-		tableBody = <AgentsTableBody />;
+		tableBody = <AgentsTableBody agents={data} />;
 	} else if (tableType === "locations") {
-		tableBody = <LocationsTableBody />;
+		tableBody = <LocationsTableBody locations={data} />;
 	} else if (tableType === "transfermean") {
-		tableBody = <TransfermeanTableBody />;
+		tableBody = <TransfermeanTableBody transferMeans={data} />;
 	} else if (tableType === "reservationsReport") {
 		tableBody = <ReservationsReportTableBody reportSearchParams={reportSearchParams} />;
 	} else if (tableType === "transfersReport") {

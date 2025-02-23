@@ -1,14 +1,7 @@
-import connectToDatabase from "@/lib/mongodb";
 import EditButton from "../EditButton";
-import Locations from "@/models/Locations";
 import DeleteButton from "../DeleteButton";
 
-export default async function LocationsTableBody() {
-	await connectToDatabase();
-
-	const locationsData = await Locations.find().lean();
-	const locations = JSON.parse(JSON.stringify(locationsData));
-
+export default async function LocationsTableBody({ locations }) {
 	return (
 		<tbody className="text-gray-600 text-sm font-light p-4">
 			{locations.map(location => (
