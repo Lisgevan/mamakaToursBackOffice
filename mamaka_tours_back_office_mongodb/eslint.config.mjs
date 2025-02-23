@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 // const eslintConfig = [...compat.extends("next/core-web-vitals, next/babel")];
 const eslintConfig = [
 	...compat.config({
-		extends: ["next/core-web-vitals", "next/babel"],
+		extends: ["next/core-web-vitals"],
 		rules: {
 			"@next/next/no-img-element": "off",
 		},

@@ -47,7 +47,7 @@ export function GlobalProvider({ children }) {
 		}
 		router.push(`?${params.toString()}`);
 		router.refresh(); // This forces the server component to update
-	}, [showModal]);
+	}, [router, searchParams, showModal]);
 
 	return (
 		<GlobalContext.Provider

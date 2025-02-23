@@ -15,16 +15,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<GlobalProvider>
-			<html lang="en">
-				<body className={`${inter.className} flex flex-col w-max`}>
-					<NavBar />
+		<html lang="en">
+			<body className={`${inter.className} flex flex-col w-max`}>
+				<Suspense fallback={<GlobalLoading />}>
+					<GlobalProvider>
+						<NavBar />
 
-					<Suspense fallback={<GlobalLoading />}>
 						<main className="flex flex-col mx-auto h-max">{children}</main>
-					</Suspense>
-				</body>
-			</html>
-		</GlobalProvider>
+					</GlobalProvider>
+				</Suspense>
+			</body>
+		</html>
 	);
 }
