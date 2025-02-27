@@ -7,7 +7,7 @@ import Link from "next/link";
 
 async function TransfersReportPage({ searchParams }) {
 	noStore();
-	const reportSearchParams = await searchParams;
+	const reportSearchParams = (await searchParams) ?? {};
 
 	const query = new URLSearchParams(reportSearchParams);
 	const queryString = query.toString();

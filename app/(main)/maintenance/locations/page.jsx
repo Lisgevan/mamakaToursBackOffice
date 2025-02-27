@@ -6,7 +6,7 @@ import connectToDatabase from "@/lib/mongodb";
 import Locations from "@/models/Locations";
 
 export default async function LocationsPage({ searchParams }) {
-	const { editModal } = await searchParams;
+	const { editModal } = (await searchParams) ?? {};
 	const isModalOpen = editModal === "true"; // Read URL param
 
 	await connectToDatabase();

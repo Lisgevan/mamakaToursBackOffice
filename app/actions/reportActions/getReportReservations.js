@@ -19,7 +19,6 @@ export async function getReportReservations(agent = undefined, dateFrom = undefi
 
 		return reservations;
 	}
-	// const filter = { reservationDate: { $gte: "2024-01-01", $lte: "2024-03-31" }, agent: "LATO" };
 	const filter = {};
 
 	const reservationsData = await Reservations.find(filter)

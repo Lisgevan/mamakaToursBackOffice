@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 
 export default async function AddReservation({ params }) {
-	const { idSlug } = await params;
+	const { idSlug } = (await params) ?? "";
 	const reservation = await getReservation(idSlug);
 	return (
 		<>

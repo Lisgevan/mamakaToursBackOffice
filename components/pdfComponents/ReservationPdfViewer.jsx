@@ -23,13 +23,20 @@ export default function ReservationPdfViewer({ reservationsList, reportSearchPar
 	return (
 		<>
 			<div className="z-20 sticky top-16 left-0 p-5 bg-gray-900 antialiased grow w-lvw flex justify-center">
-				<Button
+				{/* <Button
 					type="button"
 					onClick={() => window.close()}
 					colorClasses={"text-red-500 border-red-500 hover:bg-red-500"}
 				>
 					Close PDF Tab
-				</Button>
+				</Button> */}
+				<button
+					type="button"
+					onClick={() => window.close()}
+					className="hover:text-white border font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-red-500 border-red-500 hover:bg-red-500"
+				>
+					Close PDF Tab
+				</button>
 				<PDFDownloadLink
 					document={
 						<ReservationReportPdf reservationsList={reservationsList} reportSearchParams={reportSearchParams} />

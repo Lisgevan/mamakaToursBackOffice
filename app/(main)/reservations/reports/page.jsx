@@ -7,9 +7,10 @@ import Link from "next/link";
 
 export default async function ReservationsReportsPage({ searchParams }) {
 	noStore();
-	const reportSearchParams = await searchParams;
-
+	const reportSearchParams = (await searchParams) ?? {};
+	console.log("Final reportSearchParams:", JSON.stringify(reportSearchParams));
 	const query = new URLSearchParams(reportSearchParams);
+
 	const queryString = query.toString();
 
 	return (

@@ -6,7 +6,7 @@ import connectToDatabase from "@/lib/mongodb";
 import Agents from "@/models/Agents";
 
 export default async function AgentssPage({ searchParams }) {
-	const { editModal } = await searchParams;
+	const { editModal } = (await searchParams) ?? {};
 	const isModalOpen = editModal === "true"; // Read URL param
 
 	// Fetch agents data

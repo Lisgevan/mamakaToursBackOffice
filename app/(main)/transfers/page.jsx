@@ -5,7 +5,7 @@ import { unstable_noStore as noStore } from "next/cache";
 
 async function TransfersPage({ searchParams }) {
 	noStore();
-	const reportSearchParams = await searchParams;
+	const reportSearchParams = (await searchParams) ?? {};
 
 	return (
 		<>

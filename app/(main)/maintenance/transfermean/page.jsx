@@ -6,7 +6,7 @@ import connectToDatabase from "@/lib/mongodb";
 import TransferMean from "@/models/TransferMean";
 
 export default async function TransferMeansPage({ searchParams }) {
-	const { editModal } = await searchParams;
+	const { editModal } = (await searchParams) ?? {};
 	const isModalOpen = editModal === "true"; // Read URL param
 
 	await connectToDatabase();

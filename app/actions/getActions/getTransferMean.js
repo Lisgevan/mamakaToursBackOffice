@@ -23,18 +23,11 @@ import connectToDatabase from "@/lib/mongodb";
 import TransferMean from "@/models/TransferMean"; // Adjust your import path if needed
 
 export async function getTransferMean() {
-	// console.log("🔵 Server Action: getTransferMean() called"); // ✅ Debugging
-
 	try {
 		await connectToDatabase();
-		// console.log("🟢 Database Connected"); // ✅ Debugging
-
-		const data = await TransferMean.find({});
-		// console.log("🟣 Data Fetched:", data); // ✅ Debugging
-
+		const data = await TransferMean.find({}).lean();
 		return JSON.parse(JSON.stringify(data)); // Ensure serialization
 	} catch (error) {
-		// console.error("🔴 getTransferMean() Error:", error);
 		return [];
 	}
 }
