@@ -46,6 +46,7 @@ export const reservationReportPdfStyles = StyleSheet.create({
 		justifyContent: "center",
 		alignContent: "center",
 		padding: 5,
+		overflow: "hidden",
 	},
 	thTdStyle: {
 		justifyContent: "center",

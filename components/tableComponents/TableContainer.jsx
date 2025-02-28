@@ -7,6 +7,8 @@ import LocationsTableBody from "./LocationsTableBody";
 import TransfermeanTableBody from "./TransferMeanTableBody";
 import ReservationsReportTableBody from "./ReservationsReportTableBody";
 import TransfersReportTableBody from "./TransfersReportTableBody";
+import { Suspense } from "react";
+import GlobalLoading from "../GlobalLoading";
 
 function TableContainer({ tableType, reportSearchParams, data }) {
 	let tableBody;
@@ -29,16 +31,18 @@ function TableContainer({ tableType, reportSearchParams, data }) {
 	}
 
 	return (
-		<div className="min-w-screen min-h-max flex justify-center bg-gray-100 font-sans">
-			<div className="min-w-max lg:w-5/6">
-				<div className="bg-white shadow-md rounded">
-					<table className="w-screen table-auto">
-						<TableHead tableType={tableType} />
-						{tableBody}
-					</table>
+		<Suspense fallback={<GlobalLoading />}>
+			<div className="min-w-screen min-h-max flex justify-center bg-gray-100 font-sans">
+				<div className="min-w-max lg:w-5/6">
+					<div className="bg-white shadow-md rounded">
+						<table className="w-screen table-auto">
+							<TableHead tableType={tableType} />
+							{tableBody}
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
+		</Suspense>
 	);
 }
 

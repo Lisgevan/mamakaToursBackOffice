@@ -48,43 +48,43 @@ export default function TransferReportPdf({ transfersList, reportSearchParams })
 					<Text>{title}</Text>
 				</View>
 				<View style={styles.main}>
-					<Table>
-						<View fixed>
-							<TH style={{ fontSize: 12 }}>
-								{transfersHeadList.map((item, index) => (
-									<TD key={index} style={styles.thTdStyle}>
-										{item}
-									</TD>
-								))}
-							</TH>
-						</View>
-						{transfersList.map((transfer, index) => (
-							<TR key={transfer._id} style={index % 2 === 1 ? styles.trStyle : ""}>
-								<TD style={styles.trTdStyle}>{transfer.transferType}</TD>
-								<TD style={styles.trTdStyle}>
-									<Text>{transfer.agent}</Text>
+					{/* <Table> */}
+					<View fixed>
+						<TH style={{ fontSize: 12 }}>
+							{transfersHeadList.map((item, index) => (
+								<TD key={index} style={styles.thTdStyle}>
+									{item}
 								</TD>
-								<TD style={styles.trTdStyle}>{transfer?.transferMean}</TD>
-								<TD style={styles.trTdStyle}>{formatDate(transfer.transferDate)}</TD>
-								<TD style={styles.trTdStyle}>{transfer.transferTime}</TD>
-								<TD style={styles.trTdStyle}>{transfer.locationFrom}</TD>
-								<TD style={styles.trTdStyle}>{transfer.locationTo}</TD>
-								<TD style={styles.trTdStyle}>{Number(transfer.price).toFixed(2)}</TD>
-								{reportSearchParams.transferMean && <TD style={styles.trTdStyle}>{transfer.paid ? "PAID" : ""}</TD>}
-							</TR>
-						))}
-						<TR>
-							<TD style={styles.thTdStyle}>{totalPaid ? "Paid: " : ""}</TD>
-							<TD style={styles.thTdStyle}>{totalPaid ? Number(totalPaid).toFixed(2) : ""}</TD>
-							<TD style={styles.thTdStyle}></TD>
-							<TD style={styles.thTdStyle}>{totalNotPaid ? "Not Paid: " : ""}</TD>
-							<TD style={styles.thTdStyle}>{totalNotPaid ? Number(totalNotPaid).toFixed(2) : ""}</TD>
-							<TD style={styles.thTdStyle}></TD>
-							<TD style={[styles.thTdStyle, { justifyContent: "flex-end" }]}>Total Cost:</TD>
-							<TD style={styles.thTdStyle}>{Number(totalCost).toFixed(2)}</TD>
-							{reportSearchParams.transferMean && <TD style={styles.thTdStyle}></TD>}
+							))}
+						</TH>
+					</View>
+					{transfersList.map((transfer, index) => (
+						<TR key={transfer._id} style={index % 2 === 1 ? styles.trStyle : ""}>
+							<TD style={styles.trTdStyle}>{transfer.transferType}</TD>
+							<TD style={styles.trTdStyle}>
+								<Text>{transfer.agent}</Text>
+							</TD>
+							<TD style={styles.trTdStyle}>{transfer?.transferMean}</TD>
+							<TD style={styles.trTdStyle}>{formatDate(transfer.transferDate)}</TD>
+							<TD style={styles.trTdStyle}>{transfer.transferTime}</TD>
+							<TD style={styles.trTdStyle}>{transfer.locationFrom}</TD>
+							<TD style={styles.trTdStyle}>{transfer.locationTo}</TD>
+							<TD style={styles.trTdStyle}>{Number(transfer.price).toFixed(2)}</TD>
+							{reportSearchParams.transferMean && <TD style={styles.trTdStyle}>{transfer.paid ? "PAID" : ""}</TD>}
 						</TR>
-					</Table>
+					))}
+					<TR>
+						<TD style={styles.thTdStyle}>{totalPaid ? "Paid: " : ""}</TD>
+						<TD style={styles.thTdStyle}>{totalPaid ? Number(totalPaid).toFixed(2) : ""}</TD>
+						<TD style={styles.thTdStyle}></TD>
+						<TD style={styles.thTdStyle}>{totalNotPaid ? "Not Paid: " : ""}</TD>
+						<TD style={styles.thTdStyle}>{totalNotPaid ? Number(totalNotPaid).toFixed(2) : ""}</TD>
+						<TD style={styles.thTdStyle}></TD>
+						<TD style={[styles.thTdStyle, { justifyContent: "flex-end" }]}>Total Cost:</TD>
+						<TD style={styles.thTdStyle}>{Number(totalCost).toFixed(2)}</TD>
+						{reportSearchParams.transferMean && <TD style={styles.thTdStyle}></TD>}
+					</TR>
+					{/* </Table> */}
 				</View>
 				<View style={styles.footer} fixed>
 					<Text>Date of issue: {formatDate(new Date())}</Text>
