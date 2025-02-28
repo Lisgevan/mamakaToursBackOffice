@@ -1,11 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { getAccommodations } from "@/app/actions/getActions/getAccommodations";
 import { getAgents } from "@/app/actions/getActions/getAgents";
 import { getLocations } from "@/app/actions/getActions/getLocations";
 import { getReservations } from "@/app/actions/getActions/getReservations";
 import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
-import { useEffect, useState } from "react";
 
 export default function Select({ name, children, extraClasses = "", required = true, onChange = () => {}, dataItem }) {
 	const [selections, setSelections] = useState([]);

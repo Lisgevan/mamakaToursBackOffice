@@ -1,9 +1,10 @@
 "use client"; // Mark this as a client component
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation"; // Import useSearchParams
-import TransferPdfViewer from "@/components/pdfComponents/TransferPdfViewer";
 import { dataToObject } from "@/lib/dataToObject";
+import TransferPdfViewer from "@/components/pdfComponents/TransferPdfViewer";
+import GlobalLoading from "@/components/GlobalLoading";
 
 export default function PdfPage() {
 	const searchParams = useSearchParams(); // Use the useSearchParams hook
@@ -43,5 +44,9 @@ export default function PdfPage() {
 		return <div>Error: {error}</div>;
 	}
 
-	return <TransferPdfViewer transfersList={transfers} reportSearchParams={dataToObject(searchParams)} />;
+	return (
+		<Suspense fallback={<GlobalLoading />}>
+			<TransferPdfViewer transfersList={transfers} reportSearchParams={dataToObject(searchParams)} />
+		</Suspense>
+	);
 }

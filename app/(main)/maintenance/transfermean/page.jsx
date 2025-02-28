@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import EditModal from "@/components/EditModal";
 import AddDataForm from "@/components/formComponents/AddDataForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import connectToDatabase from "@/lib/mongodb";
@@ -19,8 +21,10 @@ export default async function TransferMeansPage({ searchParams }) {
 			<Header pageName="TRANSFER MEANS PAGE">
 				<AddDataForm dataType={"transferMean"} />
 			</Header>
-			<TableContainer tableType={"transfermean"} data={transferMeans} />
-			{isModalOpen && <EditModal dataType="locations" />}
+			<Suspense fallback={<GlobalLoading />}>
+				<TableContainer tableType={"transfermean"} data={transferMeans} />
+				{isModalOpen && <EditModal dataType="locations" />}
+			</Suspense>
 		</>
 	);
 }

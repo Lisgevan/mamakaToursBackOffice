@@ -1,18 +1,11 @@
 "use client";
-import { PDFViewer } from "@react-pdf/renderer";
-// import { useEffect } from "react";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import Button from "../Button";
 import ReservationReportPdf from "./ReservationReportPdf";
-import dynamic from "next/dynamic";
 
 export default function ReservationPdfViewer({ reservationsList, reportSearchParams }) {
 	// Ensure reservationsList is an array
 	const safeReservationsList = Array.isArray(reservationsList) ? reservationsList : [];
-
-	// useEffect(() => {
-	// 	console.log("reservationsList updated:", safeReservationsList);
-	// 	console.log("reportSearchParams updated:", reportSearchParams);
-	// }, [safeReservationsList, reportSearchParams]);
 
 	let reportFilename;
 	if (reportSearchParams?.agent) {
@@ -20,15 +13,6 @@ export default function ReservationPdfViewer({ reservationsList, reportSearchPar
 	} else {
 		reportFilename = `ReservationReport.pdf`;
 	}
-
-	const PDFDownloadLink = dynamic(() => import("@react-pdf/renderer").then(mod => mod.PDFDownloadLink), {
-		ssr: false,
-		loading: () => <p>Loading...</p>,
-	});
-	const PDFViewer = dynamic(() => import("@react-pdf/renderer").then(mod => mod.PDFViewer), {
-		ssr: false,
-		loading: () => <p>Loading...</p>,
-	});
 
 	return (
 		<>
@@ -40,13 +24,6 @@ export default function ReservationPdfViewer({ reservationsList, reportSearchPar
 				>
 					Close PDF Tab
 				</Button>
-				{/* <button
-					type="button"
-					onClick={() => window.close()}
-					className="hover:text-white border font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-red-500 border-red-500 hover:bg-red-500"
-				>
-					Close PDF Tab
-				</button> */}
 				<PDFDownloadLink
 					document={
 						<ReservationReportPdf reservationsList={safeReservationsList} reportSearchParams={reportSearchParams} />

@@ -1,17 +1,12 @@
 "use client";
+
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-// import { useEffect } from "react";
 import Button from "../Button";
 import TransferReportPdf from "./TransferReportPdf";
 
 export default function TransferPdfViewer({ transfersList, reportSearchParams }) {
 	// Ensure transfersList is an array
 	const safeTransfersList = Array.isArray(transfersList) ? transfersList : [];
-
-	// useEffect(() => {
-	// 	console.log("transfersList updated:", safeTransfersList);
-	// 	console.log("reportSearchParams updated:", reportSearchParams);
-	// }, [safeTransfersList, reportSearchParams]);
 
 	let reportFilename;
 	if (reportSearchParams?.agent) {

@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import EditModal from "@/components/EditModal";
 import AddDataForm from "@/components/formComponents/AddDataForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import connectToDatabase from "@/lib/mongodb";
@@ -18,8 +20,10 @@ export default async function LocationsPage({ searchParams }) {
 			<Header pageName="LOCATIONS PAGE">
 				<AddDataForm dataType={"locations"} />
 			</Header>
-			<TableContainer tableType={"locations"} data={locations} />
-			{isModalOpen && <EditModal dataType="locations" />}
+			<Suspense fallback={<GlobalLoading />}>
+				<TableContainer tableType={"locations"} data={locations} />
+				{isModalOpen && <EditModal dataType="locations" />}
+			</Suspense>
 		</>
 	);
 }

@@ -1,14 +1,14 @@
 "use client";
 
 import { useActionState, useState, useEffect } from "react";
-import Button from "../Button";
-import Input from "./Input";
 import { useRouter } from "next/navigation";
-import Select from "./Select";
-import TransferDetails from "../TransferDetails";
 import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import { editTransfers } from "@/app/actions/editActions/editTransfers";
+import Button from "../Button";
+import Input from "./Input";
+import Select from "./Select";
+import TransferDetails from "../TransferDetails";
 
 export default function EditTransfernForm({ transfer }) {
 	const updateTransferById = editTransfers.bind(null, transfer._id);

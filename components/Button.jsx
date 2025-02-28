@@ -1,4 +1,5 @@
 "use client";
+
 function Button({ colorClasses, type = "button", onClick = () => {}, children }) {
 	return (
 		<>

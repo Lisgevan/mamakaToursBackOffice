@@ -1,11 +1,10 @@
 "use client";
-// import { reservationReportPdfStyles as styles } from "@/components/pdfComponents/reservationReportPdfStyles";
-import formatDate from "@/lib/formatDate";
-import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
+
+import { useEffect } from "react";
+import { TD, TH, TR } from "@ag-media/react-pdf-table";
 import { Document, Font, Page, Text, View } from "@react-pdf/renderer";
 import { reservationReportPdfStyles as styles } from "./reservationReportPdfStyles";
-import { useEffect } from "react";
-// reservationReportPdfStyles
+import formatDate from "@/lib/formatDate";
 
 export default function ReservationReportPdf({ reservationsList, reportSearchParams }) {
 	useEffect(() => {
@@ -17,8 +16,6 @@ export default function ReservationReportPdf({ reservationsList, reportSearchPar
 	let title;
 	let totalCost;
 	const safeReservationsList = reservationsList || [];
-
-	//Reference	Agent	Accommodation	Pax	Total Charge	Client's Name	Reservation Type	Date
 
 	if (reportSearchParams?.agent) {
 		title = `${reportSearchParams.agent} - ${reportSearchParams.reservationType} Report: ${formatDate(

@@ -1,7 +1,9 @@
+import { unstable_noStore as noStore } from "next/cache";
+import { Suspense } from "react";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
-import { unstable_noStore as noStore } from "next/cache";
 
 async function TransfersPage({ searchParams }) {
 	noStore();
@@ -17,7 +19,9 @@ async function TransfersPage({ searchParams }) {
 					Reports Page
 				</LinkButton>
 			</Header>
-			<TableContainer tableType="transfers" reportSearchParams={reportSearchParams} />
+			<Suspense fallback={<GlobalLoading />}>
+				<TableContainer tableType="transfers" reportSearchParams={reportSearchParams} />
+			</Suspense>
 		</>
 	);
 }

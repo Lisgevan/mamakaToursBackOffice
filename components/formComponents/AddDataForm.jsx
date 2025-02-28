@@ -1,8 +1,8 @@
 "use client";
 import { useState, useActionState, startTransition } from "react";
+import { addData } from "@/app/actions/addActions/addData";
 import Input from "./Input";
 import Button from "../Button";
-import { addData } from "@/app/actions/addActions/addData";
 
 export default function AddDataForm({ dataType }) {
 	const [formState, formAction] = useActionState(addData, null);

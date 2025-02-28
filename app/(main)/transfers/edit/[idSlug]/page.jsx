@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { getTransfer } from "@/app/actions/getActions/getTransfer";
 import EditTransferForm from "@/components/formComponents/EditTransferForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 
@@ -13,7 +15,9 @@ export default async function AddReservation({ params }) {
 					All Transfers
 				</LinkButton>
 			</Header>
-			<EditTransferForm transfer={transfer} />
+			<Suspense fallback={<GlobalLoading />}>
+				<EditTransferForm transfer={transfer} />
+			</Suspense>
 		</>
 	);
 }

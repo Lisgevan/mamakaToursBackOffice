@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import AddReservationForm from "@/components/formComponents/AddReservationForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 
@@ -10,7 +12,9 @@ export default function AddReservation() {
 					All Reservations
 				</LinkButton>
 			</Header>
-			<AddReservationForm />
+			<Suspense fallback={<GlobalLoading />}>
+				<AddReservationForm />
+			</Suspense>
 		</>
 	);
 }

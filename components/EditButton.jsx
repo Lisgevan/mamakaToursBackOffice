@@ -1,7 +1,8 @@
 "use client";
+
+import { useGlobalContext } from "@/context/GlobalContext";
 import Link from "next/link";
 import Button from "./Button";
-import { useGlobalContext } from "@/context/GlobalContext";
 
 function EditButton({ dataItemId, dataItemType }) {
 	const { setDataType, setShowModal, setDataId } = useGlobalContext();

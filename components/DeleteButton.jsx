@@ -1,7 +1,7 @@
 "use client";
 
-import { deleteData } from "@/app/actions/deleteActions/deleteData";
 import { startTransition } from "react";
+import { deleteData } from "@/app/actions/deleteActions/deleteData";
 
 function DeleteButton(data, dataType) {
 	const handleDelete = data => {

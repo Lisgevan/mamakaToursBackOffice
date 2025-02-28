@@ -1,9 +1,11 @@
+import { unstable_noStore as noStore } from "next/cache";
+import { Suspense } from "react";
+import Link from "next/link";
 import ReportTransferForm from "@/components/formComponents/ReportTransferForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
-import { unstable_noStore as noStore } from "next/cache";
-import Link from "next/link";
 
 async function TransfersReportPage({ searchParams }) {
 	noStore();
@@ -28,7 +30,9 @@ async function TransfersReportPage({ searchParams }) {
 					Create PDF
 				</Link>
 			</Header>
-			<TableContainer tableType="transfersReport" reportSearchParams={reportSearchParams} />
+			<Suspense fallback={<GlobalLoading />}>
+				<TableContainer tableType="transfersReport" reportSearchParams={reportSearchParams} />
+			</Suspense>
 		</>
 	);
 }

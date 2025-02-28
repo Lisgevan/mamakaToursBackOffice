@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
-import Button from "./Button";
-import Input from "./formComponents/Input";
 import { editData } from "@/app/actions/editActions/editData";
 import { getDataById } from "@/app/actions/getActions/getDataById";
+import Button from "./Button";
+import Input from "./formComponents/Input";
 
 export default function EditModal() {
 	const { dataId, dataType, setShowModal } = useGlobalContext();

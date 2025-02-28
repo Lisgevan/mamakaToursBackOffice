@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Button from "./Button";
 import { getReservations } from "@/app/actions/getActions/getReservations";
+import Button from "./Button";
 
 export default function TransferDetails({ onChange, transferDetailsData = null }) {
 	const [reservations, setReservations] = useState([]);

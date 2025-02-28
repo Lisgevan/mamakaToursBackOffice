@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 import Header from "@/components/Header";
 import TableContainer from "@/components/tableComponents/TableContainer";
 import LinkButton from "@/components/LinkButton";
+import GlobalLoading from "@/components/GlobalLoading";
 
 function ReservationsPage() {
 	noStore();
@@ -16,8 +18,9 @@ function ReservationsPage() {
 					Reports Page
 				</LinkButton>
 			</Header>
-
-			<TableContainer tableType="reservations" />
+			<Suspense fallback={<GlobalLoading />}>
+				<TableContainer tableType="reservations" />
+			</Suspense>
 		</>
 	);
 }

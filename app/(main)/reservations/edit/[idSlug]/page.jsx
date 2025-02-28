@@ -1,6 +1,7 @@
-// import { getReservation } from "@/actions/getActions/getReservation";
+import { Suspense } from "react";
 import { getReservation } from "@/app/actions/getActions/getReservation";
 import EditReservationForm from "@/components/formComponents/EditReservationForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 
@@ -14,7 +15,9 @@ export default async function AddReservation({ params }) {
 					All Reservations
 				</LinkButton>
 			</Header>
-			<EditReservationForm reservation={reservation} />
+			<Suspense fallback={<GlobalLoading />}>
+				<EditReservationForm reservation={reservation} />
+			</Suspense>
 		</>
 	);
 }

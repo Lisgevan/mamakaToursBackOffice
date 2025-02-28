@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import AddTransfernForm from "@/components/formComponents/AddTransferForm";
+import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 
@@ -10,7 +12,9 @@ export default function AddTrandfer() {
 					All Transfers
 				</LinkButton>
 			</Header>
-			<AddTransfernForm />
+			<Suspense fallback={<GlobalLoading />}>
+				<AddTransfernForm />
+			</Suspense>
 		</>
 	);
 }
