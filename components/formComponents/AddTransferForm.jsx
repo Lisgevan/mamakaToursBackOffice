@@ -8,6 +8,8 @@ import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import Input from "./Input";
 import Select from "./Select";
 import TransferDetails from "../TransferDetails";
+import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 export default function AddTransfernForm() {
 	unstable_noStore();
@@ -38,6 +40,7 @@ export default function AddTransfernForm() {
 	// ✅ Check if action was successful, then redirect
 	useEffect(() => {
 		if (formState?.success) {
+			toast.success("Transfer added.", { theme: "colored" });
 			router.push("/transfers"); // ✅ Redirect from client
 		}
 	}, [formState, router]);
@@ -76,10 +79,6 @@ export default function AddTransfernForm() {
 
 	return (
 		<form action={formAction} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-2 w-3/5 m-auto text-gray-900">
-			{/* Display success message */}
-			{formState?.message && (
-				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
-			)}
 			{/* transfer type / agent */}
 			<div className="flex justify-around ">
 				<Select name="transferType" dataType="transferType" onChange={handleChange} dataItem={formData}>

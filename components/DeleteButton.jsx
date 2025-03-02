@@ -2,6 +2,7 @@
 
 import { startTransition } from "react";
 import { deleteData } from "@/app/actions/deleteActions/deleteData";
+import { toast } from "react-toastify";
 
 function DeleteButton(data, dataType) {
 	const handleDelete = data => {
@@ -16,8 +17,10 @@ function DeleteButton(data, dataType) {
 			startTransition(async () => {
 				const result = await deleteData(dataPlus);
 				if (!result.success) {
+					toast.alert(`${dataName} was not deleted.`, { theme: "colored" });
 					alert(result.error);
 				}
+				toast.warning(`${dataName} was deleted.`, { theme: "dark" });
 			});
 		}
 	};

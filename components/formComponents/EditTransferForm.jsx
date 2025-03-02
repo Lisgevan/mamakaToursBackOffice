@@ -8,6 +8,8 @@ import { editTransfers } from "@/app/actions/editActions/editTransfers";
 import Input from "./Input";
 import Select from "./Select";
 import TransferDetails from "../TransferDetails";
+import { toast } from "react-toastify";
+import SubmitButton from "./SubmitButton";
 
 export default function EditTransfernForm({ transfer }) {
 	const updateTransferById = editTransfers.bind(null, transfer._id);
@@ -70,16 +72,13 @@ export default function EditTransfernForm({ transfer }) {
 		const res = await updateTransferById(formData);
 
 		if (res.success) {
+			toast.success("Transfer updated.", { theme: "colored" });
 			router.push("/transfers"); // ✅ Redirect after success
 		}
 	};
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-2 w-3/5 m-auto text-gray-900">
-			{/* Display success message */}
-			{formState?.message && (
-				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
-			)}
 			{/* transfer type / agent */}
 			<div className="flex justify-around ">
 				<Select dataItem={formData} dataType="transferType" name="transferType" onChange={handleChange}>

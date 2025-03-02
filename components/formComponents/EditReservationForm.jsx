@@ -6,6 +6,7 @@ import { editReservations } from "@/app/actions/editActions/editReservations";
 import Input from "./Input";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 export default function EditReservationForm({ reservation }) {
 	const updateReservationById = editReservations.bind(null, reservation._id);
@@ -32,6 +33,7 @@ export default function EditReservationForm({ reservation }) {
 		const res = await updateReservationById(formData);
 
 		if (res.success) {
+			toast.success("Reservation updated.", { theme: "colored" });
 			router.push("/reservations"); // ✅ Redirect after success
 		}
 	};
@@ -63,10 +65,6 @@ export default function EditReservationForm({ reservation }) {
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-4 w-3/5 m-auto text-gray-900">
-			{/* Display success message */}
-			{formState?.message && (
-				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
-			)}
 			{/* reference / agent */}
 			<div className="flex justify-around ">
 				<Input type="text" name="reference" formData={formData} handleChange={handleChange}>

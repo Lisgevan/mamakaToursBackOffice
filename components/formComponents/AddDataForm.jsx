@@ -4,6 +4,7 @@ import { addData } from "@/app/actions/addActions/addData";
 import Input from "./Input";
 import Button from "../Button";
 import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 export default function AddDataForm({ dataType }) {
 	const [formState, formAction] = useActionState(addData, null);
@@ -33,6 +34,8 @@ export default function AddDataForm({ dataType }) {
 
 		startTransition(() => {
 			formAction(newFormData); // ✅ Pass correctly formatted FormData
+			toast.success("Data added.", { theme: "colored" });
+
 			setShow(show => !show);
 			setFormData({});
 		});

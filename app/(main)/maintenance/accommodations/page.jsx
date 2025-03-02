@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import EditModal from "@/components/EditModal";
+import EditModal from "@/components/formComponents/EditModal";
 import AddDataForm from "@/components/formComponents/AddDataForm";
 import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";

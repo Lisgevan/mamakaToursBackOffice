@@ -4,6 +4,8 @@ import NavBar from "@/components/NavBar";
 import { GlobalProvider } from "@/context/GlobalContext";
 import { Suspense } from "react";
 import GlobalLoading from "@/components/GlobalLoading";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,7 @@ export default function RootLayout({ children }) {
 				<Suspense fallback={<GlobalLoading />}>
 					<GlobalProvider>
 						<NavBar />
-
+						<ToastContainer />
 						<main className="flex flex-col mx-auto h-max">{children}</main>
 					</GlobalProvider>
 				</Suspense>

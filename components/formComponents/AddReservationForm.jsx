@@ -6,6 +6,7 @@ import { addReservations } from "@/app/actions/addActions/addReservations";
 import Input from "./Input";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 export default function AddReservationForm() {
 	const [formState, formAction] = useActionState(addReservations, null);
@@ -38,6 +39,7 @@ export default function AddReservationForm() {
 	useEffect(() => {
 		if (formState?.success) {
 			setSubmitting(true);
+			toast.success("Reservation added.", { theme: "colored" });
 			router.push("/reservations"); // ✅ Redirect from client
 		}
 	}, [formState, router]);
@@ -69,10 +71,6 @@ export default function AddReservationForm() {
 
 	return (
 		<form action={formAction} className="space-y-4 bg-gray-400 p-4 flex flex-col gap-4 w-3/5 m-auto text-gray-900">
-			{/* Display success message */}
-			{formState?.message && (
-				<p className={formState.success ? "text-green-600" : "text-red-600"}>{formState.message}</p>
-			)}
 			{/* reference / agent */}
 			<div className="flex justify-around ">
 				<Input type="text" name="reference" formData={formData} handleChange={handleChange}>

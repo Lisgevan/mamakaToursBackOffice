@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { editData } from "@/app/actions/editActions/editData";
 import { getDataById } from "@/app/actions/getActions/getDataById";
-import Button from "./Button";
-import Input from "./formComponents/Input";
-import SubmitButton from "./formComponents/SubmitButton";
+import Button from "../Button";
+import Input from "./Input";
+import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 export default function EditModal() {
 	const { dataId, dataType, setShowModal } = useGlobalContext();
@@ -30,6 +31,7 @@ export default function EditModal() {
 
 	const handleSubmit = async event => {
 		event.preventDefault();
+		toast.success("Data updated.", { theme: "colored" });
 		await editData(dataId, dataType, formData);
 		setShowModal(false);
 	};
