@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { addTransfers } from "@/app/actions/addActions/addTransfers";
 import { getTransferMean } from "@/app/actions/getActions/getTransferMean";
 import { editTransfers } from "@/app/actions/editActions/editTransfers";
-import Button from "../Button";
 import Input from "./Input";
 import Select from "./Select";
 import TransferDetails from "../TransferDetails";
@@ -167,9 +166,7 @@ export default function EditTransfernForm({ transfer }) {
 			<TransferDetails onChange={setTransferDetails} transferDetailsData={formData.transferDetails} />
 
 			{/* Submit button */}
-			<Button type="submit" colorClasses="text-gray-700 border-gray-700 hover:bg-green-500 w-full text-2xl">
-				Save Transfer
-			</Button>
+			<SubmitButton>Transfer</SubmitButton>
 		</form>
 	);
 }

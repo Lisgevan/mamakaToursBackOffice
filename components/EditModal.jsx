@@ -6,6 +6,7 @@ import { editData } from "@/app/actions/editActions/editData";
 import { getDataById } from "@/app/actions/getActions/getDataById";
 import Button from "./Button";
 import Input from "./formComponents/Input";
+import SubmitButton from "./formComponents/SubmitButton";
 
 export default function EditModal() {
 	const { dataId, dataType, setShowModal } = useGlobalContext();
@@ -52,9 +53,7 @@ export default function EditModal() {
 						</Input>
 					)}
 					<div className="flex justify-end gap-2 mt-4">
-						<Button type="submit" colorClasses="text-green-700 border-green-700 hover:bg-green-500 text-2xl">
-							Update Data
-						</Button>
+						<SubmitButton>Data</SubmitButton>
 						<Button type="button" onClick={handleShowModal} colorClasses="px-4 py-2 bg-gray-400 rounded">
 							CANCEL
 						</Button>

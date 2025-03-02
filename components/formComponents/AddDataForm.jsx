@@ -3,6 +3,7 @@ import { useState, useActionState, startTransition } from "react";
 import { addData } from "@/app/actions/addActions/addData";
 import Input from "./Input";
 import Button from "../Button";
+import SubmitButton from "./SubmitButton";
 
 export default function AddDataForm({ dataType }) {
 	const [formState, formAction] = useActionState(addData, null);
@@ -65,9 +66,7 @@ export default function AddDataForm({ dataType }) {
 							Full Name
 						</Input>
 					)}
-					<Button type="submit" colorClasses="text-green-700 border-green-700 hover:bg-green-500 text-2xl">
-						Add Data
-					</Button>
+					<SubmitButton>Data</SubmitButton>
 					<Button
 						type="button"
 						onClick={handletoggle}

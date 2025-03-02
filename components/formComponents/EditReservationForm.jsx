@@ -3,9 +3,9 @@
 import { useActionState, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { editReservations } from "@/app/actions/editActions/editReservations";
-import Button from "../Button";
 import Input from "./Input";
 import Select from "./Select";
+import SubmitButton from "./SubmitButton";
 
 export default function EditReservationForm({ reservation }) {
 	const updateReservationById = editReservations.bind(null, reservation._id);
@@ -240,9 +240,7 @@ export default function EditReservationForm({ reservation }) {
 							CHECK IN / OUT
 						</label>
 					</div>
-					<Button type="submit" colorClasses="text-gray-700 border-gray-700 hover:bg-green-500 w-full text-2xl">
-						Save Reservation
-					</Button>
+					<SubmitButton>Reservation</SubmitButton>
 				</div>
 			</div>
 		</form>

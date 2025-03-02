@@ -3,9 +3,9 @@
 import { useActionState, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { addReservations } from "@/app/actions/addActions/addReservations";
-import Button from "../Button";
 import Input from "./Input";
 import Select from "./Select";
+import SubmitButton from "./SubmitButton";
 
 export default function AddReservationForm() {
 	const [formState, formAction] = useActionState(addReservations, null);
@@ -31,11 +31,13 @@ export default function AddReservationForm() {
 		arrivalOnly: false,
 		departureOnly: false,
 	});
+	const [submitting, setSubmitting] = useState(false);
 
 	const router = useRouter();
 	// ✅ Check if action was successful, then redirect
 	useEffect(() => {
 		if (formState?.success) {
+			setSubmitting(true);
 			router.push("/reservations"); // ✅ Redirect from client
 		}
 	}, [formState, router]);
@@ -250,9 +252,7 @@ export default function AddReservationForm() {
 							Departure only
 						</label>
 					</div>
-					<Button type="submit" colorClasses="text-gray-700 border-gray-700 hover:bg-green-500 w-full text-2xl">
-						Save Reservation
-					</Button>
+					<SubmitButton>Reservation</SubmitButton>
 				</div>
 			</div>
 		</form>
