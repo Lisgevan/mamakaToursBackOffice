@@ -32,6 +32,19 @@ export default function EditTransfernForm({ transfer }) {
 		}
 	}, [formState, router]);
 
+	// Load fullName on component mount
+	useEffect(() => {
+		const loadFullName = async () => {
+			const transferMeans = await getTransferMean();
+			const selectedTransfer = transferMeans.find(t => t.name === transfer.transferMean);
+			if (selectedTransfer) {
+				setFullName(selectedTransfer.fullName);
+			}
+		};
+
+		loadFullName();
+	}, [transfer.transferMean]);
+
 	// Handle selection change
 	const handleSelectChange = async e => {
 		const { name, value } = e.target;
