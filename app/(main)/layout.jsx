@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import GlobalLoading from "@/components/GlobalLoading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({ children }) {
 			<body className={`${inter.className} flex flex-col w-max`}>
 				<Suspense fallback={<GlobalLoading />}>
 					<GlobalProvider>
-						<NavBar />
-						<ToastContainer />
-						<main className="flex flex-col mx-auto h-max">{children}</main>
+						<SessionProvider>
+							<NavBar />
+							<ToastContainer />
+							<main className="flex flex-col mx-auto h-max">{children}</main>
+						</SessionProvider>
 					</GlobalProvider>
 				</Suspense>
 			</body>
