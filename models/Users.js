@@ -12,7 +12,6 @@ const UsersSchema = new Schema(
 );
 
 // let Users;
-
 // try {
 // 	Users = model("Users");
 // } catch {
