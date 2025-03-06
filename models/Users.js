@@ -11,13 +11,13 @@ const UsersSchema = new Schema(
 	}
 );
 
-// let Users;
-// try {
-// 	Users = model("Users");
-// } catch {
-// 	Users = model("Users", UsersSchema);
-// }
+let Users;
+try {
+	Users = model("Users");
+} catch {
+	Users = model("Users", UsersSchema);
+}
 
-const Users = models.Users || model("Users", UsersSchema);
+// const Users = models.Users || model("Users", UsersSchema);
 
 export default Users;
