@@ -4,10 +4,17 @@ import GlobalLoading from "@/components/GlobalLoading";
 import Header from "@/components/Header";
 import LinkButton from "@/components/LinkButton";
 import TableContainer from "@/components/tableComponents/TableContainer";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 async function TransfersPage({ searchParams }) {
 	noStore();
 	const reportSearchParams = (await searchParams) ?? {};
+	const session = await auth();
+	console.log("transfers", session.user.email);
+	if (!session) {
+		redirect("/");
+	}
 
 	return (
 		<>

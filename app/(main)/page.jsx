@@ -1,17 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { useSession, signIn } from "next-auth/react";
 import Header from "@/components/Header";
+import GlobalLoading from "@/components/GlobalLoading";
 
 export default function MainBoardPage() {
 	const [contentHeight, setContentHeight] = useState(0);
+	const { data: session, status } = useSession();
 
 	useEffect(() => {
 		const totalHeight = window.innerHeight;
 		const calculatedContentHeight = totalHeight - 165;
 		setContentHeight(calculatedContentHeight);
 	}, []);
+
+	if (status === "loading") {
+		return <GlobalLoading />;
+	}
+
+	if (!session) {
+		return (
+			<div className="min-h-screen flex items-center justify-center flex-col">
+				<h1 className="text-3xl font-bold mb-4">Please Log In</h1>
+				<button
+					onClick={() => signIn("google")}
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+					Sign in with Google
+				</button>
+			</div>
+		);
+	}
 
 	return (
 		<>
