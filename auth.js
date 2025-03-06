@@ -1,7 +1,5 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import Users from "./models/Users";
-import connectToDatabase from "@/lib/mongodb";
 
 const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [
@@ -17,10 +15,8 @@ const { handlers, auth, signIn, signOut } = NextAuth({
 	],
 	callbacks: {
 		async signIn({ profile }) {
-			await connectToDatabase();
-			// console.log("Searching for user with email:", profile.email);
-			const user = await Users.findOne({ email: profile.email });
-			// console.log("User found:", user);
+			const acceptedMails = ["vkaramarias@gmail.com", "mamakatours@gmail.com"];
+			const user = acceptedMails.includes(profile.email);
 			if (user) {
 				return {
 					id: profile.sub,
@@ -31,6 +27,9 @@ const { handlers, auth, signIn, signOut } = NextAuth({
 				return null;
 			}
 		},
+	},
+	pages: {
+		error: "/reservations",
 	},
 	secret: process.env.NEXTAUTH_SECRET,
 });
