@@ -15,8 +15,7 @@ const { handlers, auth, signIn, signOut } = NextAuth({
 	],
 	callbacks: {
 		async signIn({ profile }) {
-			// const acceptedMails = ["vkaramarias@gmail.com", "mamakatours@gmail.com"];
-			const acceptedMails = process.env.ALLOWED_EMAILS.split(",");
+			const acceptedMails = ["vkaramarias@gmail.com", "mamakatours@gmail.com"];
 			const user = acceptedMails.includes(profile.email);
 			if (user) {
 				return {
