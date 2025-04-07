@@ -7,11 +7,6 @@ import { reservationReportPdfStyles as styles } from "./reservationReportPdfStyl
 import formatDate from "@/lib/formatDate";
 
 export default function ReservationReportPdf({ reservationsList, reportSearchParams }) {
-	useEffect(() => {
-		console.log("reservationsList updated:", reservationsList);
-		console.log("reportSearchParams updated:", reportSearchParams);
-	}, [reservationsList, reportSearchParams]);
-
 	let reservationsHeadList = [];
 	let title;
 	let totalCost;

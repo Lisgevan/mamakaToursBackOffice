@@ -17,10 +17,11 @@ function DeleteButton(data, dataType) {
 			startTransition(async () => {
 				const result = await deleteData(dataPlus);
 				if (!result.success) {
-					toast.alert(`${dataName} was not deleted.`, { theme: "colored" });
+					toast.error(`${dataName} was not deleted.`, { theme: "colored" });
 					alert(result.error);
+				} else {
+					toast.warning(`${dataName} was deleted.`, { theme: "dark" });
 				}
-				toast.warning(`${dataName} was deleted.`, { theme: "dark" });
 			});
 		}
 	};
@@ -31,8 +32,7 @@ function DeleteButton(data, dataType) {
 					onClick={() => {
 						handleDelete(data);
 					}}
-					className="bg-red-500 rounded-xl hover:rounded-3xl hover:bg-yellow-500 transition-all duration-300 text-yellow-200 hover:text-red-800 font-bold py-2 px-4"
-				>
+					className="bg-red-500 rounded-xl hover:rounded-3xl hover:bg-yellow-500 transition-all duration-300 text-yellow-200 hover:text-red-800 font-bold py-2 px-4">
 					DELETE
 				</button>
 			</div>
